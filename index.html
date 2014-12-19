@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>jOrgChart - A jQuery OrgChart Plugin</title>
+    <title>Softplus Organization Chart</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
@@ -68,63 +68,126 @@ ul#upload-chart li {
          // read json and convert to html formate
 		function loadjson(){
 			var items = [];
-			var data = TAFFY([
-			
+			var data = TAFFY([			
 			   {
 				  "id":1,
-				  "name":"Andrey",
-                  "rank":"Manager",
-                  "department":"Administration",
-				  "level":"Systems and Network Manager",
+				  "name":"Panupong Chantaklang",
+                  "rank":"SDM",
+                  "department":"Administration department",
+				  "level":"Manager",
 				  "parent":""
 			   },
 			   {
 				  "id":2,
-				  "name":"Enrique",
-                  "rank":"Vice President ",
-                  "department":"IT",
-				  "level":"IT and Networks Officer",
+				  "name":"Suriya e.",
+                  "rank":"SA",
+                  "department":"Development department",
+				  "level":"Software Analyst",
 				  "parent":1
 			   },
 			   {
 				  "id":3,
-				  "name":"Chero",
-                  "rank":"Staff",
-                  "department":"Legal",
-				  "level":"Principal Engineer, Electrical Machines",
+				  "name":"Kumphol",
+                  "rank":"SA",
+                  "department":"Development department",
+				  "level":"Software Analyst",
 				  "parent":1
 			   },
 			   {
 				  "id":4,
-				  "name":"Ricardo",
-                  "rank":"Manager",
-                  "department":"Marketing",
-				  "level":"Senior Manager, IT Risk Management",
-				  "parent":3
+				  "name":"Kritchanaphak J.",
+                  "rank":"ASA",
+                  "department":"Development department",
+				  "level":"Assistant Software Analyst",
+				  "parent":1
 			   },
 			   {
 				  "id":5,
-				  "name":"Jhon",
-                  "rank":"CIO",
-                  "department":"Operations",
-				  "level":"Senior Vice President and Group President,",
-				  "parent":3
+				  "name":"Sarawut e.",
+                  "rank":"ASA",
+                  "department":"Development department",
+				  "level":"Assistant Software Analyst",
+				  "parent":1
 			   },
 			   {
 				  "id":6,
-				  "name":"William",
-                  "rank":"Director",
-                  "department":"Purchasing",
-				  "level":"Systems Engineer",
-				  "parent":3
+				  "name":"Anuchit P.",
+                  "rank":"SSD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":2
 			   },
 			   {
 				  "id":7,
-				  "name":"Michile",
-                  "rank":"Vice President",
-                  "department":"Research and Development",
-				  "level":"ICT Service Desk Manager",
+				  "name":"Wutthinan W.",
+                  "rank":"SSD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":4
+			   },
+			   {
+				  "id":8,
+				  "name":"Apichat E.",
+                  "rank":"SSD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":5
+			   },
+			   {
+				  "id":9,
+				  "name":"Sirirad C.",
+                  "rank":"SSD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":2
+			   },
+			   {
+				  "id":10,
+				  "name":"Chutimon C.",
+                  "rank":"SSD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":3
+			   },
+			   {
+				  "id":11,
+				  "name":"New SD",
+                  "rank":"SD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":4
+			   },
+			   {
+				  "id":12,
+				  "name":"New SD",
+                  "rank":"SD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":5
+			   },
+			   {
+				  "id":13,
+				  "name":"New SD",
+                  "rank":"SD",
+                  "department":"Development department",
+				  "level":"Software Developer",
 				  "parent":6
+			   },
+			   {
+				  "id":14,
+				  "name":"New SD",
+                  "rank":"SD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":3
+			   },
+			   {
+				  "id":15,
+				  "name":"New SD",
+                  "rank":"SD",
+                  "department":"Development department",
+				  "level":"Software Developer",
+				  "parent":3
 			   }
 				]);
 			
@@ -310,11 +373,9 @@ ul#upload-chart li {
     <div class="topbar">
         <div class="topbar-inner">
             <div class="container">
-                <a class="brand" href="#">jQuery Organisation Chart</a>
+                <a class="brand" href="#">Softplus Organization Chart</a>
                 <ul class="nav">
-                    <li><a href="http://github.com/sselvamani22">Github</a></li>
-                    <li><a href="http://twitter.com/sselvamani22">Twitter</a></li>                  
-                    <li><a href="http://www.linkedin.com/pub/selva-mani/69/235/711">Linkedin</a></li>
+                    
                 </ul>
                 <div class="pull-right">
                     <div class="alert-message info" id="show-list">Show underlying list.</div>
@@ -328,11 +389,7 @@ ul#upload-chart li {
       
    </div>            
     <ul id="upload-chart">
-		<li id="Albert" class="node child"><span class="label_node"><a href="http://github.com/sselvamani22">Albert</a><br><i>Data Architect</i> </span><div class="details"><p><strong>rank:</strong>Vice President</p><p><strong>department:</strong>Research and Development</p></div></li>
-		<li id="Moser" class="node child"><span class="label_node"><a href="http://github.com/sselvamani22">Moser</a><br><i>technical engineer </i></span><div class="details"><p><strong>rank:</strong>Manager</p><p><strong>department:</strong>IT</p></div></li>
-		<li id="Meinert" class="node child"><span class="label_node"><a href="http://github.com/sselvamani22">Meinert</a><br><i>Maintenance Service Engineer</i></span><div class="details"><p><strong>rank:</strong>Vice President</p><p><strong>department:</strong>Research and Development</p></div></li>
-	    <li id="Mic" class="node child"><span class="label_node"><a href="http://github.com/sselvamani22">Mic</a><br><i>Chairman of the Board, President</i></span><div class="details"><p><strong>rank:</strong>Manager</p><p><strong>department:</strong>IT</p></div></li>
-
+		<li id="Albert" class="node child"><span class="label_node"><a href="#">Albert</a><br><i>Data Architect</i> </span><div class="details"><p><strong>rank:</strong>Vice President</p><p><strong>department:</strong>Research and Development</p></div></li>
 	</ul>
     <div id="chart" class="orgChart"></div>
     <div id="fancy" class="hidden">
@@ -413,6 +470,7 @@ ul#upload-chart li {
 				}
 			});
 			console.log(hierarchy)
+            console.log(JSON.stringify(hierarchy));
 			alert("Check console")
 		}
 		
