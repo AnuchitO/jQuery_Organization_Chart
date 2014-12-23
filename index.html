@@ -78,6 +78,7 @@ ul#upload-chart li {
             -moz-border-radius: 50em;
             border-radius: 50em;
 
+
 /*-webkit-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
     -moz-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
     box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);*/
@@ -112,6 +113,7 @@ ul#upload-chart li {
                   "rank":"SDM",
                   "department":"Administration department",
 				  "level":"CEO",
+                  "image":"images/f-1.jpg",
 				  "parent":""
 			   },
 			   {
@@ -120,6 +122,7 @@ ul#upload-chart li {
                   "rank":"SA",
                   "department":"Development department",
 				  "level":"Software Analyst",
+                  "image":"images/f-2.jpg",
 				  "parent":1
 			   },
 			   {
@@ -128,6 +131,7 @@ ul#upload-chart li {
                   "rank":"SA",
                   "department":"Development department",
 				  "level":"Software Analyst",
+                  "image":"images/f-3.jpg",
 				  "parent":1
 			   },
 			   {
@@ -136,6 +140,7 @@ ul#upload-chart li {
                   "rank":"ASA",
                   "department":"Development department",
 				  "level":"Assistant Software Analyst",
+                  "image":"images/f-4.jpg",
 				  "parent":1
 			   },
 			   {
@@ -144,6 +149,7 @@ ul#upload-chart li {
                   "rank":"ASA",
                   "department":"Development department",
 				  "level":"Assistant Software Analyst",
+                  "image":"images/f-5.jpg",
 				  "parent":1
 			   },
 			   {
@@ -152,6 +158,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-6.jpg",
 				  "parent":2
 			   },
 			   {
@@ -160,6 +167,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-7.jpg",
 				  "parent":4
 			   },
 			   {
@@ -168,6 +176,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-8.jpg",
 				  "parent":5
 			   },
 			   {
@@ -176,6 +185,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-9.jpg",
 				  "parent":2
 			   },
 			   {
@@ -184,6 +194,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-10.jpg",
 				  "parent":3
 			   },
 			   {
@@ -192,6 +203,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-11.jpg",
 				  "parent":4
 			   },
 			   {
@@ -200,6 +212,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-12.jpg",
 				  "parent":5
 			   },
 			   {
@@ -208,6 +221,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Softwaloadjsonre Developer",
+                  "image":"images/f-13.jpg",
 				  "parent":6
 			   },
 			   {
@@ -216,6 +230,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-14.jpg",
 				  "parent":3
 			   },
 			   {
@@ -224,6 +239,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-15.jpg",
 				  "parent":3
 			   }
 				]);
@@ -234,10 +250,10 @@ ul#upload-chart li {
 			//start loop the json and form the html
 			function loops(root){
 				if (root.parent == ""){
-				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt='Nan'/></div>");
+				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
 				}
 				else{
-				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt='Nan'/></div>");
+				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
 				}
 				var c = data({"parent":root.id}).count();
 				if (c != 0){
