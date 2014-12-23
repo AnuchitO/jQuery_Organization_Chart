@@ -83,9 +83,10 @@ a:hover{
     color: #C02600;
     font-size: 14px;
     position: relative;
-	width: 135px;
-	height : 80px;
+	width: 235px;
+	height : 100px;
 }
+
 .jOrgChart .vp {background-color 	: #eeeeee;}
 .jOrgChart .cio {background-color 	: #2DE7EF;}
 .jOrgChart > table{
@@ -116,8 +117,8 @@ a:hover{
 .exp-col {
     background: url(../images/col.png) no-repeat 50% 50%;
     position: absolute;
-    left: 44%;
-    top: 70px;
+    left: 46%;
+    top: 90px;
 }
 .contracted .exp-col {
     background: url(../images/exp.png) no-repeat 50% 50%;
@@ -158,7 +159,7 @@ background-color: #d1e6c7;
 .opciones{
     position: absolute;
     right: 0;
-    top: 60px;
+    top: 80px;
 }
 .root .opciones{
    padding-right: 10px;
