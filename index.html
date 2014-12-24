@@ -15,6 +15,7 @@
     <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
     <script src="js/jquery.jOrgChart.js"></script>
 	<script type="text/javascript" src="js/taffy.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <style type="text/css">
 
 #getjson {
@@ -380,11 +381,11 @@ ul#upload-chart li {
                     $("#new_node_title").val("");
                     var $node = $("li."+add_to_node+":not('.temp')");
                     var childs = $("#org li").size();
-					childs += (childs+4)
+					childs += (childs+4);
                     childs++;
                     tipo_nodo += "child "+add_to_node+" "+childs;
                     var append_text = "<li class='"+ tipo_nodo +"'>";
-                    append_text += "<span class='label_node'><a href='http://github.com/sselvamani22'>" + texto + "</a><br>"+texti+"</span>";
+                    append_text += "<span class='label_node'><a href='#'>" + texto + "</a><br>"+texti+"</span>";
                     append_text += "</li>";
                     if($node.find("ul").size()==0){
                         append_text = "<ul>" + append_text + "</ul>";
@@ -447,15 +448,17 @@ ul#upload-chart li {
     <div id="chart" class="orgChart" align="center"></div>
     <div id="fancy" class="hidden">
         <form action="." method="post" id="add_node_form">
-            <h1 class="title_lb">New Node</h1>
+            <h1 class="title_lb">New Node</h1>            
             <div class="span12" id="add_nodo">
-                <p class="notice span3">
-                    Enter node caption
-                </p>
-                <input type="text" name="node_name" id="new_node_name" class="span6"/>
-				 <input type="text" name="title_name" id="new_node_title" class="span6"/>
+                <label for="node_name" ><span class="title_lb" >Customer : </span> </label> 
+                <input type="text" name="node_name" id="new_node_name" class="span9"/>
+                <br/> <br/>
+                 <label for="title_name" ><span class="title_lb" >Position : </span> </label> 
+				<input type="text" name="title_name" id="new_node_title" class="span9"/>
+                <br/> <br/>
+
                 <div class="span12">
-                    <button id="add_node" class="aqua_btn span3 hidden">Add</button>
+                    <button id="add_node" class="btn btn-primary aqua_btn span3 ">Add</button>
                 </div>
             </div>
         </form>
@@ -464,7 +467,7 @@ ul#upload-chart li {
     <div id="fancy_edit" class="hidden">$
         <form action="." method="post" id="edit_node_form">
             <h1 class="title_lb">Edit Node</h1>
-            <div class="span12" id="edit_nodo">
+            <div class="span12" id="edit_nodo">            
                 <p class="notice span3">
                     Enter node caption
                 </p>
