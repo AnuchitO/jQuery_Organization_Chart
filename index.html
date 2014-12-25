@@ -249,6 +249,7 @@ ul#upload-chart li {
 			     loops(record);
              });
 			//start loop the json and form the html
+            var classUnic = "unic";
 			function loops(root){
 				if (root.parent == ""){
 				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
@@ -348,10 +349,18 @@ ul#upload-chart li {
             $(".add").live("click", function(){
                 click_flag=false;
 
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
+                // classList = $(this).parent().parent().attr('class').split(/\s+/);
+                // $.each(classList, function(index,item) {
+                //     if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
+                //         add_to_node = item;
+                //     }
+                // });
+        classList = $(this).parent().parent().attr('class').split(/\s+/);
                 $.each(classList, function(index,item) {
                     if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
-                        add_to_node = item;
+                       if(item.contains("unic")){
+                            add_to_node = item;
+                       }                        
                     }
                 });
 
