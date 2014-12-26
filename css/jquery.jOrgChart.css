@@ -2,7 +2,7 @@
 /* Draw the lines */
 .jOrgChart .line {
   height                : 20px;
-  width                 : 4px;
+  width                 : 2px;
 }
 
 .jOrgChart .down {
@@ -11,15 +11,15 @@
 }
 
 .jOrgChart .top {
-  border-top          : 3px solid black;
+  border-top          : 2px solid black;
 }
 
 .jOrgChart .left {
-  border-right          : 2px solid black;
+  border-right          : 1px solid black;
 }
 
 .jOrgChart .right {
-  border-left           : 2px solid black;
+  border-left           : 1px solid black;
 }
 
 /* node cell */

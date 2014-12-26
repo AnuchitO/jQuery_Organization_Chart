@@ -15,6 +15,7 @@
     <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
     <script src="js/jquery.jOrgChart.js"></script>
 	<script type="text/javascript" src="js/taffy.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <style type="text/css">
 
 #getjson {
@@ -28,9 +29,9 @@ margin-top: 20px;
 #chart{
     height: 300px;
     overflow: scroll;
-    width: 500px;
+    width: 1024px;
 	resize:both;
-overflow:auto;
+    overflow:auto;
 }
 */
 ul#upload-chart{
@@ -45,6 +46,44 @@ ul#upload-chart li {
     padding-top: 5px;
     width: 200px;
 }
+.label_name{
+        position: relative;
+        top: 30px;
+        left: 3px;
+        float: left;
+        font-size: 18px;
+}
+
+.label_level {
+        position: relative;
+        top: -8px;
+        left: 0px;
+        float: right;
+        width: 150px;
+        text-align:right;
+        word-wrap: break-word;
+
+}
+
+.crop{  
+        overflow: hidden; 
+        position: absolute;
+        top: -12px;
+        left: -150px;
+        z-index: -1;
+    }
+
+.crop img { width: 18%; /*Here you can use margins for accurate positioning of cropped image*/
+            
+            -webkit-border-radius: 50em;
+            -moz-border-radius: 50em;
+            border-radius: 50em;
+
+
+/*-webkit-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
+    -moz-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
+    box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);*/
+            }
 </style>
 
     <script>
@@ -74,7 +113,8 @@ ul#upload-chart li {
 				  "name":"Panupong Chantaklang",
                   "rank":"SDM",
                   "department":"Administration department",
-				  "level":"Manager",
+				  "level":"CEO",
+                  "image":"images/f-1.jpg",
 				  "parent":""
 			   },
 			   {
@@ -83,6 +123,7 @@ ul#upload-chart li {
                   "rank":"SA",
                   "department":"Development department",
 				  "level":"Software Analyst",
+                  "image":"images/f-2.jpg",
 				  "parent":1
 			   },
 			   {
@@ -91,6 +132,7 @@ ul#upload-chart li {
                   "rank":"SA",
                   "department":"Development department",
 				  "level":"Software Analyst",
+                  "image":"images/f-3.jpg",
 				  "parent":1
 			   },
 			   {
@@ -99,6 +141,7 @@ ul#upload-chart li {
                   "rank":"ASA",
                   "department":"Development department",
 				  "level":"Assistant Software Analyst",
+                  "image":"images/f-4.jpg",
 				  "parent":1
 			   },
 			   {
@@ -107,6 +150,7 @@ ul#upload-chart li {
                   "rank":"ASA",
                   "department":"Development department",
 				  "level":"Assistant Software Analyst",
+                  "image":"images/f-5.jpg",
 				  "parent":1
 			   },
 			   {
@@ -115,6 +159,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-6.jpg",
 				  "parent":2
 			   },
 			   {
@@ -123,6 +168,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-7.jpg",
 				  "parent":4
 			   },
 			   {
@@ -131,6 +177,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-8.jpg",
 				  "parent":5
 			   },
 			   {
@@ -139,6 +186,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-9.jpg",
 				  "parent":2
 			   },
 			   {
@@ -147,6 +195,7 @@ ul#upload-chart li {
                   "rank":"SSD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-10.jpg",
 				  "parent":3
 			   },
 			   {
@@ -155,6 +204,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-11.jpg",
 				  "parent":4
 			   },
 			   {
@@ -163,6 +213,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-12.jpg",
 				  "parent":5
 			   },
 			   {
@@ -171,6 +222,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Softwaloadjsonre Developer",
+                  "image":"images/f-13.jpg",
 				  "parent":6
 			   },
 			   {
@@ -179,6 +231,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-14.jpg",
 				  "parent":3
 			   },
 			   {
@@ -187,6 +240,7 @@ ul#upload-chart li {
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"Software Developer",
+                  "image":"images/f-15.jpg",
 				  "parent":3
 			   }
 				]);
@@ -195,12 +249,13 @@ ul#upload-chart li {
 			     loops(record);
              });
 			//start loop the json and form the html
+            var classUnic = "unic";
 			function loops(root){
 				if (root.parent == ""){
-				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'><span class='label_node'><a href='http://github.com/sselvamani22'>" + root.name+"</a></br><i>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div>");
+				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
 				}
 				else{
-				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span class='label_node'><a href='http://github.com/sselvamani22'>" + root.name+"</a></br><i>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div>");
+				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
 				}
 				var c = data({"parent":root.id}).count();
 				if (c != 0){
@@ -294,10 +349,18 @@ ul#upload-chart li {
             $(".add").live("click", function(){
                 click_flag=false;
 
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
+                // classList = $(this).parent().parent().attr('class').split(/\s+/);
+                // $.each(classList, function(index,item) {
+                //     if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
+                //         add_to_node = item;
+                //     }
+                // });
+        classList = $(this).parent().parent().attr('class').split(/\s+/);
                 $.each(classList, function(index,item) {
                     if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
-                        add_to_node = item;
+                       if(item.contains("unic")){
+                            add_to_node = item;
+                       }                        
                     }
                 });
 
@@ -327,11 +390,11 @@ ul#upload-chart li {
                     $("#new_node_title").val("");
                     var $node = $("li."+add_to_node+":not('.temp')");
                     var childs = $("#org li").size();
-					childs += (childs+4)
+					childs += (childs+4);
                     childs++;
                     tipo_nodo += "child "+add_to_node+" "+childs;
                     var append_text = "<li class='"+ tipo_nodo +"'>";
-                    append_text += "<span class='label_node'><a href='http://github.com/sselvamani22'>" + texto + "</a><br>"+texti+"</span>";
+                    append_text += "<span class='label_node'><a href='#'>" + texto + "</a><br>"+texti+"</span>";
                     append_text += "</li>";
                     if($node.find("ul").size()==0){
                         append_text = "<ul>" + append_text + "</ul>";
@@ -394,15 +457,17 @@ ul#upload-chart li {
     <div id="chart" class="orgChart" align="center"></div>
     <div id="fancy" class="hidden">
         <form action="." method="post" id="add_node_form">
-            <h1 class="title_lb">New Node</h1>
+            <h1 class="title_lb">New Node</h1>            
             <div class="span12" id="add_nodo">
-                <p class="notice span3">
-                    Enter node caption
-                </p>
-                <input type="text" name="node_name" id="new_node_name" class="span6"/>
-				 <input type="text" name="title_name" id="new_node_title" class="span6"/>
+                <label for="node_name" ><span class="title_lb" >Customer : </span> </label> 
+                <input type="text" name="node_name" id="new_node_name" class="span9"/>
+                <br/> <br/>
+                 <label for="title_name" ><span class="title_lb" >Position : </span> </label> 
+				<input type="text" name="title_name" id="new_node_title" class="span9"/>
+                <br/> <br/>
+
                 <div class="span12">
-                    <button id="add_node" class="aqua_btn span3 hidden">Add</button>
+                    <button id="add_node" class="btn btn-primary aqua_btn span3 ">Add</button>
                 </div>
             </div>
         </form>
@@ -411,7 +476,7 @@ ul#upload-chart li {
     <div id="fancy_edit" class="hidden">$
         <form action="." method="post" id="edit_node_form">
             <h1 class="title_lb">Edit Node</h1>
-            <div class="span12" id="edit_nodo">
+            <div class="span12" id="edit_nodo">            
                 <p class="notice span3">
                     Enter node caption
                 </p>
