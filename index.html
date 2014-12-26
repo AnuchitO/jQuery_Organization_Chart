@@ -48,7 +48,7 @@ ul#upload-chart li {
 }
 .label_name{
         position: relative;
-        top: 30px;
+        top: 70px;
         left: 3px;
         float: left;
         font-size: 18px;
@@ -56,8 +56,8 @@ ul#upload-chart li {
 
 .label_level {
         position: relative;
-        top: -8px;
-        left: 0px;
+        top: -15px;
+        left: -10px;
         float: right;
         width: 150px;
         text-align:right;
@@ -110,7 +110,7 @@ ul#upload-chart li {
 			var data = TAFFY([			
 			   {
 				  "id":1,
-				  "name":"Panupong Chantaklang",
+				  "name":"Panupong C.",
                   "rank":"SDM",
                   "department":"Administration department",
 				  "level":"CEO",
@@ -120,81 +120,81 @@ ul#upload-chart li {
 			   {
 				  "id":2,
 				  "name":"Suriya e.",
-                  "rank":"SA",
+                  "rank":"Software Analyst",
                   "department":"Development department",
-				  "level":"Software Analyst",
+				  "level":"SA",
                   "image":"images/f-2.jpg",
 				  "parent":1
 			   },
 			   {
 				  "id":3,
 				  "name":"Kumphol",
-                  "rank":"SA",
+                  "rank":"Software Analyst",
                   "department":"Development department",
-				  "level":"Software Analyst",
+				  "level":"SA",
                   "image":"images/f-3.jpg",
 				  "parent":1
 			   },
 			   {
 				  "id":4,
 				  "name":"Kritchanaphak J.",
-                  "rank":"ASA",
+                  "rank":"Assistant Software Analyst",
                   "department":"Development department",
-				  "level":"Assistant Software Analyst",
+				  "level":"ASA",
                   "image":"images/f-4.jpg",
 				  "parent":1
 			   },
 			   {
 				  "id":5,
 				  "name":"Sarawut e.",
-                  "rank":"ASA",
+                  "rank":"Assistant Software Analyst",
                   "department":"Development department",
-				  "level":"Assistant Software Analyst",
+				  "level":"ASA",
                   "image":"images/f-5.jpg",
 				  "parent":1
 			   },
 			   {
 				  "id":6,
 				  "name":"Anuchit P.",
-                  "rank":"SSD",
+                  "rank":"Software Developer",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-6.jpg",
 				  "parent":2
 			   },
 			   {
 				  "id":7,
 				  "name":"Wutthinan W.",
-                  "rank":"SSD",
+                  "rank":"Software Developer",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-7.jpg",
 				  "parent":4
 			   },
 			   {
 				  "id":8,
 				  "name":"Apichat E.",
-                  "rank":"SSD",
+                  "rank":"Software Developer",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-8.jpg",
 				  "parent":5
 			   },
 			   {
 				  "id":9,
 				  "name":"Sirirad C.",
-                  "rank":"SSD",
+                  "rank":"Software Developer",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-9.jpg",
 				  "parent":2
 			   },
 			   {
 				  "id":10,
 				  "name":"Chutimon C.",
-                  "rank":"SSD",
+                  "rank":"Software Developer",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-10.jpg",
 				  "parent":3
 			   },
@@ -203,7 +203,7 @@ ul#upload-chart li {
 				  "name":"New SD",
                   "rank":"SD",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-11.jpg",
 				  "parent":4
 			   },
@@ -212,16 +212,16 @@ ul#upload-chart li {
 				  "name":"New SD",
                   "rank":"SD",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-12.jpg",
 				  "parent":5
 			   },
 			   {
 				  "id":13,
 				  "name":"New SD",
-                  "rank":"SD",
+                  "rank":"Softwaloadjsonre Developer",
                   "department":"Development department",
-				  "level":"Softwaloadjsonre Developer",
+				  "level":"SD",
                   "image":"images/f-13.jpg",
 				  "parent":6
 			   },
@@ -230,7 +230,7 @@ ul#upload-chart li {
 				  "name":"New SD",
                   "rank":"SD",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-14.jpg",
 				  "parent":3
 			   },
@@ -239,7 +239,7 @@ ul#upload-chart li {
 				  "name":"New SD",
                   "rank":"SD",
                   "department":"Development department",
-				  "level":"Software Developer",
+				  "level":"SD",
                   "image":"images/f-15.jpg",
 				  "parent":3
 			   }
@@ -253,10 +253,10 @@ ul#upload-chart li {
 			function loops(root){
 				if (root.parent == ""){
 				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'>"+
-            "<span ><div><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
+            "<span ><div class='label_name'><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
 				}
 				else{
-				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
+				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div><a  class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
 				}
 				var c = data({"parent":root.id}).count();
 				if (c != 0){

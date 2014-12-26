@@ -119,8 +119,8 @@ a:hover{
 .exp-col {
     background: url(../images/col.png) no-repeat 50% 50%;
     position: absolute;
-    left: 46%;
-    top: 90px;
+    left: 44%;
+    top: 120px;
 }
 .contracted .exp-col {
     background: url(../images/exp.png) no-repeat 50% 50%;
@@ -160,8 +160,8 @@ background-color: #d1e6c7;
 }
 .opciones{
     position: absolute;
-    right: 0;
-    top: 80px;
+    right: -8px;
+    top: 105px;
 }
 .root .opciones{
    padding-right: 10px;
