@@ -68,16 +68,16 @@ ul#upload-chart li {
 .crop{  
         overflow: hidden; 
         position: absolute;
-        top: -12px;
-        left: -150px;
+        top: 4px;
+        left: -70px;
         z-index: -1;
     }
 
-.crop img { width: 18%; /*Here you can use margins for accurate positioning of cropped image*/
+.crop img { width: 25%; /*Here you can use margins for accurate positioning of cropped image*/
             
             -webkit-border-radius: 50em;
             -moz-border-radius: 50em;
-            border-radius: 50em;
+            border-radius: 0.5em;
 
 
 /*-webkit-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
@@ -252,10 +252,11 @@ ul#upload-chart li {
             var classUnic = "unic";
 			function loops(root){
 				if (root.parent == ""){
-				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
+				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'>"+
+            "<span ><div><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
 				}
 				else{
-				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div class='label_name'><a class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
+				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
 				}
 				var c = data({"parent":root.id}).count();
 				if (c != 0){
@@ -355,7 +356,7 @@ ul#upload-chart li {
                 //         add_to_node = item;
                 //     }
                 // });
-        classList = $(this).parent().parent().attr('class').split(/\s+/);
+                classList = $(this).parent().parent().attr('class').split(/\s+/);
                 $.each(classList, function(index,item) {
                     if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
                        if(item.contains("unic")){
@@ -390,9 +391,11 @@ ul#upload-chart li {
                     $("#new_node_title").val("");
                     var $node = $("li."+add_to_node+":not('.temp')");
                     var childs = $("#org li").size();
-					childs += (childs+4);
+					          childs += (childs+4);
                     childs++;
-                    tipo_nodo += "child "+add_to_node+" "+childs;
+                    var unicClass = add_to_node.replace(add_to_node.replace ( /[^\d.]/g, '' ),'');
+                    unicClass+=childs;
+                    tipo_nodo += "child "+unicClass+" "+childs;
                     var append_text = "<li class='"+ tipo_nodo +"'>";
                     append_text += "<span class='label_node'><a href='#'>" + texto + "</a><br>"+texti+"</span>";
                     append_text += "</li>";
