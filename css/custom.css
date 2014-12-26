@@ -83,8 +83,10 @@ a:hover{
     color: #C02600;
     font-size: 14px;
     position: relative;
-	width: 235px;
-	height : 100px;
+	width: 125px;
+	height : 125px;
+
+    border-radius: 0.8em;
 }
 
 .jOrgChart .vp {background-color 	: #eeeeee;}
