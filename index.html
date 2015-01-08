@@ -330,21 +330,24 @@ ul#upload-chart li {
             });
             //-- Listo editar :D
             $(".del").live("click", function(e){
-                var nodo=$(this);
+                if (confirm('Are you sure?'))
+                {
+                    var nodo=$(this);
 
-                if(!nodo.parent().parent().hasClass("temp")){
-                    var nodeDiv = nodo.parent().parent();
-                    var cu = nodeDiv.find("a").attr("rel");
-                    classList = nodeDiv.attr('class').split(/\s+/);
-                    $.each(classList, function(index,item) {
-                        if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                            del_node = item;
-                        }
-                    });
-                    var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
-                    remChild(element);
-                    init_tree();
-                }
+                    if(!nodo.parent().parent().hasClass("temp")){
+                        var nodeDiv = nodo.parent().parent();
+                        var cu = nodeDiv.find("a").attr("rel");
+                        classList = nodeDiv.attr('class').split(/\s+/);
+                        $.each(classList, function(index,item) {
+                            if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
+                                del_node = item;
+                            }
+                        });
+                        var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
+                        remChild(element);
+                        init_tree();
+                    }
+                }git 
 
             });
             $(".add").live("click", function(){
@@ -476,15 +479,20 @@ ul#upload-chart li {
         </form>
     </div>
 
-    <div id="fancy_edit" class="hidden">$
+    <div id="fancy_edit" class="hidden">
         <form action="." method="post" id="edit_node_form">
             <h1 class="title_lb">Edit Node</h1>
             <div class="span12" id="edit_nodo">            
-                <p class="notice span3">
-                    Enter node caption
-                </p>
+                <label for="node_name">
+                    <span class="title_lb">Customer : </span>
+                </label>
                 <input type="text" name="node_name" id="edit_node_name" class="span6"/>
-				 <input type="text" name="node_title" id="edit_node_title" class="span6"/>
+                <br>
+                <br>
+                <label for="node_position">
+                    <span class="title_lb">Position : </span>
+                </label>
+                <input type="text" name="node_title" id="edit_node_position" class="span6"/>
                 <div class="span12">
                     <button id="edit_node" class="aqua_btn span3 hidden">Edit</button>
                 </div>
