@@ -291,6 +291,11 @@ ul#upload-chart li {
 			   $("body").append("<ul id='upload-chart'></ul>")
 			}
             $(".edit").live("click", function(e){
+                var nodo=$(this);
+                var getname = nodo.parent().parent().children('span').children('div').children('a').text();
+                var getposition = nodo.parent().parent().children('span').children('i').text();
+                $('#edit_node_name').val(getname);
+                $('#edit_node_position').val(getposition);
                 classList = $(this).parent().parent().attr('class').split(/\s+/);
                 var tipo_n;
                 $.each(classList, function(index,item) {
@@ -316,6 +321,8 @@ ul#upload-chart li {
             $("#edit_node").click(function(e){
                 e.preventDefault();
                 //modify li and refresh tree
+
+
                 var edit_field = $("#edit_node_name");
 				var edit_title = $("#edit_node_title");
                 var texto = edit_field.val();
@@ -347,7 +354,7 @@ ul#upload-chart li {
                         remChild(element);
                         init_tree();
                     }
-                }git 
+                }
 
             });
             $(".add").live("click", function(){
@@ -493,8 +500,10 @@ ul#upload-chart li {
                     <span class="title_lb">Position : </span>
                 </label>
                 <input type="text" name="node_title" id="edit_node_position" class="span6"/>
+                <br>
+                <br>
                 <div class="span12">
-                    <button id="edit_node" class="aqua_btn span3 hidden">Edit</button>
+                    <button id="edit_node" class="btn btn-primary aqua_btn span3 hidden">Edit</button>
                 </div>
             </div>
         </form>
