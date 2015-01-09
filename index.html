@@ -290,51 +290,7 @@ ul#upload-chart li {
 			if ($('#upload-chart').length == 0) {
 			   $("body").append("<ul id='upload-chart'></ul>")
 			}
-            $(".edit").live("click", function(e){
-                var nodo=$(this);
-                var getname = nodo.parent().parent().children('span').children('div').children('a').text();
-                var getposition = nodo.parent().parent().children('span').children('i').text();
-                $('#edit_node_name').val(getname);
-                $('#edit_node_position').val(getposition);
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
-                var tipo_n;
-                $.each(classList, function(index,item) {
-                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                        del_node = item;
-                    }
-                    if(item == "root" || item == "child"){
-                        tipo_n = item;
-                    }
-                });
-                node_to_edit = $("li."+del_node+":not('.temp')");
-            }).fancybox({
-                        maxWidth	: 800,
-                        maxHeight	: 800,
-                        fitToView	: false,
-                        width		: '70%',
-                        height		: '70%',
-                        autoSize	: false,
-                        closeClick	: false,
-                        openEffect	: 'none',
-                        closeEffect	: 'none'
-                    });
-            $("#edit_node").click(function(e){
-                e.preventDefault();
-                //modify li and refresh tree
 
-
-                var edit_field = $("#edit_node_name");
-				var edit_title = $("#edit_node_title");
-                var texto = edit_field.val();
-				var texti = edit_title.val();
-                node_to_edit.find("> .label_node:eq(0) > a").text(texto);
-				node_to_edit.find("> .label_node:eq(0) > i").text(texti);
-                edit_field.val("");
-				edit_title.val("");
-                $.fancybox.close();
-                init_tree();
-
-            });
             //-- Listo editar :D
             $(".del").live("click", function(e){
                 if (confirm('Are you sure?'))
@@ -390,7 +346,6 @@ ul#upload-chart li {
 
             $("#add_node").click(function(e){
                 e.preventDefault();
-
                     //unidad de consumo agregada, agregar li a la lista, y refrescar arbol
 
                     var tipo_nodo = "";
@@ -418,7 +373,54 @@ ul#upload-chart li {
 
                     $.fancybox.close();
                     init_tree();
-						scroll()
+                    scroll();
+            });
+
+            $(".edit").live("click", function(e){
+                var getall=$(this);
+                var getname = getall.parent().parent().children('span').children('div').children('a').text();
+                var getposition = getall.parent().parent().children('span').children('i').text();
+                $('#edit_node_name').val(getname);
+                $('#edit_node_position').val(getposition);
+                classList = $(this).parent().parent().attr('class').split(/\s+/);
+                var tipo_n;
+                $.each(classList, function(index,item) {
+                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
+                        del_node = item;
+                    }
+                    if(item == "root" || item == "child"){
+                        tipo_n = item;
+                    }
+                });
+                node_to_edit = $("li."+del_node+":not('.temp')");
+            }).fancybox({
+                maxWidth	: 800,
+                maxHeight	: 800,
+                fitToView	: false,
+                width		: '70%',
+                height		: '70%',
+                autoSize	: false,
+                closeClick	: false,
+                openEffect	: 'none',
+                closeEffect	: 'none'
+            });
+
+            $("#edit_node").click(function(e){
+                e.preventDefault();
+                var edit_field = $("#edit_node_name");
+                var edit_title = $("#edit_node_position");
+                var texto = edit_field.val();
+                var texti = edit_title.val();
+
+                node_to_edit.find("a").text(texto);
+                node_to_edit.find("i").text(texti);
+//                node_to_edit.find("> .label_node:eq(0) > a").text(texto);
+//                node_to_edit.find("> .label_node:eq(0) > i").text(texti);
+                edit_field.val("");
+                edit_title.val("");
+                $.fancybox.close();
+                init_tree();
+
             });
 
 
@@ -442,6 +444,7 @@ ul#upload-chart li {
             scroll()
 
         });
+
     </script>
   </head>
 
