@@ -397,8 +397,13 @@ ul#upload-chart li {
                 var getall=$(this);
                 var getname = getall.parent().parent().children('span').children('div').children('a').text();
                 var getposition = getall.parent().parent().children('span').children('i').text();
+                var getrank = getall.parent().parent().children('div.details').children('p')[0].innerHTML.split("</strong>")[1];
+                var getdepartment = getall.parent().parent().children('div.details').children('p')[1].innerHTML.split("</strong>")[1];
+//                console.log(getall.parent().parent().children('div.details').children('p')[1].innerHTML.split("</strong>")[1]);
                 $('#edit_node_name').val(getname);
                 $('#edit_node_position').val(getposition);
+                $('#edit_node_rank').val(getrank);
+                $('#edit_node_department').val(getdepartment);
                 classList = $(this).parent().parent().attr('class').split(/\s+/);
                 var tipo_n;
                 $.each(classList, function(index,item) {
@@ -424,17 +429,16 @@ ul#upload-chart li {
 
             $("#edit_node").click(function(e){
                 e.preventDefault();
-                var edit_field = $("#edit_node_name");
-                var edit_title = $("#edit_node_position");
-                var texto = edit_field.val();
-                var texti = edit_title.val();
+                var edit_field = $("#edit_node_name").val();
+                var edit_title = $("#edit_node_position").val();
+                var edit_rank = $('#edit_node_rank').val();
+                var edit_department = $('#edit_node_department').val();
 
-                node_to_edit.find("a").text(texto);
-                node_to_edit.find("i").text(texti);
-//                node_to_edit.find("> .label_node:eq(0) > a").text(texto);
-//                node_to_edit.find("> .label_node:eq(0) > i").text(texti);
-                edit_field.val("");
-                edit_title.val("");
+                node_to_edit.find("a").text(edit_field);
+                node_to_edit.find("i").text(edit_title);
+                node_to_edit.find("p")[0].innerHTML = "<strong>rank:</strong>"+edit_rank
+                node_to_edit.find("p")[1].innerHTML = "<strong>department:</strong>"+edit_department
+
                 $.fancybox.close();
                 init_tree();
 
@@ -527,8 +531,20 @@ ul#upload-chart li {
                 <input type="text" name="node_title" id="edit_node_position" class="span6"/>
                 <br>
                 <br>
+                <label for="node_rank">
+                    <span class="title_lb">Rank : </span>
+                </label>
+                <input type="text" name="node_title" id="edit_node_rank" class="span6"/>
+                <br>
+                <br>
+                <label for="node_Department">
+                    <span class="title_lb">Department : </span>
+                </label>
+                <input type="text" name="node_title" id="edit_node_department" class="span6"/>
+                <br>
+                <br>
                 <div class="span12">
-                    <button id="edit_node" class="btn btn-primary aqua_btn span3 hidden">Edit</button>
+                    <button id="edit_node" class="btn btn-primary aqua_btn span3">Edit</button>
                 </div>
             </div>
         </form>
