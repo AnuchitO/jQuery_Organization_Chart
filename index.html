@@ -15,7 +15,7 @@
     <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
     <script src="js/jquery.jOrgChart.js"></script>
 	<script type="text/javascript" src="js/taffy.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
 <style type="text/css">
 
 #getjson {
@@ -314,6 +314,11 @@ ul#upload-chart li {
 
             });
             $(".add").live("click", function(){
+                $("#new_node_customer").val("");
+                $("#new_node_position").val("");
+                $("#new_node_rank").val("");
+                $("#new_node_department").val("");
+                $("#add_node").show();
                 click_flag=false;
 
                 // classList = $(this).parent().parent().attr('class').split(/\s+/);
@@ -346,34 +351,46 @@ ul#upload-chart li {
 
             $("#add_node").click(function(e){
                 e.preventDefault();
-                    //unidad de consumo agregada, agregar li a la lista, y refrescar arbol
 
-                    var tipo_nodo = "";
-                    var text_field = $("#new_node_name");
-                    var texto = text_field.val();
-					var texti = $("#new_node_title").val();
-                    text_field.val("");
-                    $("#new_node_title").val("");
-                    var $node = $("li."+add_to_node+":not('.temp')");
-                    var childs = $("#org li").size();
-					          childs += (childs+4);
-                    childs++;
-                    var unicClass = add_to_node.replace(add_to_node.replace ( /[^\d.]/g, '' ),'');
-                    unicClass+=childs;
-                    tipo_nodo += "child "+unicClass+" "+childs;
-                    var append_text = "<li class='"+ tipo_nodo +"'>";
-                    append_text += "<span class='label_node'><a href='#'>" + texto + "</a><br>"+texti+"</span>";
-                    append_text += "</li>";
-                    if($node.find("ul").size()==0){
-                        append_text = "<ul>" + append_text + "</ul>";
-                        $node.append(append_text);
-                    }else{
-                        $node.find("ul:eq(0)").append(append_text);
-                    }
+                //unidad de consumo agregada, agregar li a la lista, y refrescar arbol
+                var newAdd = [];
+                var tipo_nodo = "";
+                var text_customer = $("#new_node_customer").val();
+                var text_position = $("#new_node_position").val();
+                var text_rank = $("#new_node_rank").val();
+                var text_department = $("#new_node_department").val();
 
-                    $.fancybox.close();
-                    init_tree();
-                    scroll();
+                $("#new_node_customer").val("");
+                $("#new_node_position").val("");
+                $("#new_node_rank").val("");
+                $("#new_node_department").val("");
+
+//                console.log("customer : "+text_customer);
+//                console.log("position : "+text_position);
+//                console.log("rank : "+text_rank);
+//                console.log("department : "+text_department);
+
+                var $node = $("li."+add_to_node+":not('.temp')");
+                var childs = $("#org li").size();
+                childs += (childs+4);
+                childs++;
+                var unicClass = add_to_node.replace(add_to_node.replace ( /[^\d.]/g, '' ),'');
+                unicClass+=childs;
+                tipo_nodo += "child "+unicClass+"'id='"+childs;
+                var append_text = "<li class='"+ tipo_nodo +"'>";
+                append_text += "<span><div class='label_name'><a href='#'>" + text_customer + "</a></div><br><i class='label_level'>"+text_position+
+                "</i></span></i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + text_rank+
+                "</p><p><strong>department:</strong>" +text_department+"</p></div><div class='crop'><img src='images/f-3.jpg' alt=''/></div>";
+                append_text += "</li>";
+                if($node.find("ul").size()==0){
+                    append_text = "<ul>" + append_text + "</ul>";
+                    $node.append(append_text);
+                }else{
+                    $node.find("ul:eq(0)").append(append_text);
+                }
+                $.fancybox.close();
+                init_tree();
+                scroll()
             });
 
             $(".edit").live("click", function(e){
@@ -425,22 +442,22 @@ ul#upload-chart li {
 
 
             //forms behavior
-            $("#new_node_name, #edit_node_name").on("keyup", function(evt){
-                var id = $(this).attr("id");
-                if($(this).val() != ''){
-                    if(id == "new_node_name"){
-                        $("#add_node").show();
-                    }else{
-                        $("#edit_node").show();
-                    }
-                }else{
-                    if(id == "new_node_name"){
-                        $("#add_node").hide();
-                    }else{
-                        $("#edit_node").hide();
-                    }
-                }
-            });
+//            $("#new_node_name, #edit_node_name").on("keyup", function(evt){
+//                var id = $(this).attr("id");
+//                if($(this).val() != ''){
+//                    if(id == "new_node_name"){
+//                        $("#add_node").show();
+//                    }else{
+//                        $("#edit_node").show();
+//                    }
+//                }else{
+//                    if(id == "new_node_name"){
+//                        $("#add_node").hide();
+//                    }else{
+//                        $("#edit_node").hide();
+//                    }
+//                }
+//            });
             scroll()
 
         });
@@ -473,17 +490,22 @@ ul#upload-chart li {
     <div id="chart" class="orgChart" align="center"></div>
     <div id="fancy" class="hidden">
         <form action="." method="post" id="add_node_form">
-            <h1 class="title_lb">New Node</h1>            
+            <h1 class="title_lb">New Node</h1>
             <div class="span12" id="add_nodo">
-                <label for="node_name" ><span class="title_lb" >Customer : </span> </label> 
-                <input type="text" name="node_name" id="new_node_name" class="span9"/>
+                <label for="customer_name" ><span class="title_lb" >Customer : </span> </label>
+                <input type="text" name="customer_name" id="new_node_customer" class="span9"/>
                 <br/> <br/>
-                 <label for="title_name" ><span class="title_lb" >Position : </span> </label> 
-				<input type="text" name="title_name" id="new_node_title" class="span9"/>
+                <label for="position_name" ><span class="title_lb" >Position : </span> </label>
+                <input type="text" name="position_name" id="new_node_position" class="span9"/>
                 <br/> <br/>
-
+                <label for="rank_name" ><span class="title_lb" >Rank : </span> </label>
+                <input type="text" name="rank_name" id="new_node_rank" class="span9"/>
+                <br/> <br/>
+                <label for="department_name" ><span class="title_lb" >Department : </span> </label>
+                <input type="text" name="department_name" id="new_node_department" class="span9"/>
+                <br/> <br/>
                 <div class="span12">
-                    <button id="add_node" class="btn btn-primary aqua_btn span3 ">Add</button>
+                    <button id="add_node" class="btn btn-primary aqua_btn span3 hidden">Add</button>
                 </div>
             </div>
         </form>
