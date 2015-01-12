@@ -290,60 +290,26 @@ ul#upload-chart li {
 			if ($('#upload-chart').length == 0) {
 			   $("body").append("<ul id='upload-chart'></ul>")
 			}
-            $(".edit").live("click", function(e){
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
-                var tipo_n;
-                $.each(classList, function(index,item) {
-                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                        del_node = item;
-                    }
-                    if(item == "root" || item == "child"){
-                        tipo_n = item;
-                    }
-                });
-                node_to_edit = $("li."+del_node+":not('.temp')");
-            }).fancybox({
-                        maxWidth	: 800,
-                        maxHeight	: 800,
-                        fitToView	: false,
-                        width		: '70%',
-                        height		: '70%',
-                        autoSize	: false,
-                        closeClick	: false,
-                        openEffect	: 'none',
-                        closeEffect	: 'none'
-                    });
-            $("#edit_node").click(function(e){
-                e.preventDefault();
-                //modify li and refresh tree
-                var edit_field = $("#edit_node_name");
-				var edit_title = $("#edit_node_title");
-                var texto = edit_field.val();
-				var texti = edit_title.val();
-                node_to_edit.find("> .label_node:eq(0) > a").text(texto);
-				node_to_edit.find("> .label_node:eq(0) > i").text(texti);
-                edit_field.val("");
-				edit_title.val("");
-                $.fancybox.close();
-                init_tree();
 
-            });
             //-- Listo editar :D
             $(".del").live("click", function(e){
-                var nodo=$(this);
+                if (confirm('Are you sure?'))
+                {
+                    var nodo=$(this);
 
-                if(!nodo.parent().parent().hasClass("temp")){
-                    var nodeDiv = nodo.parent().parent();
-                    var cu = nodeDiv.find("a").attr("rel");
-                    classList = nodeDiv.attr('class').split(/\s+/);
-                    $.each(classList, function(index,item) {
-                        if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                            del_node = item;
-                        }
-                    });
-                    var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
-                    remChild(element);
-                    init_tree();
+                    if(!nodo.parent().parent().hasClass("temp")){
+                        var nodeDiv = nodo.parent().parent();
+                        var cu = nodeDiv.find("a").attr("rel");
+                        classList = nodeDiv.attr('class').split(/\s+/);
+                        $.each(classList, function(index,item) {
+                            if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
+                                del_node = item;
+                            }
+                        });
+                        var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
+                        remChild(element);
+                        init_tree();
+                    }
                 }
 
             });
@@ -380,7 +346,6 @@ ul#upload-chart li {
 
             $("#add_node").click(function(e){
                 e.preventDefault();
-
                     //unidad de consumo agregada, agregar li a la lista, y refrescar arbol
 
                     var tipo_nodo = "";
@@ -408,7 +373,54 @@ ul#upload-chart li {
 
                     $.fancybox.close();
                     init_tree();
-						scroll()
+                    scroll();
+            });
+
+            $(".edit").live("click", function(e){
+                var getall=$(this);
+                var getname = getall.parent().parent().children('span').children('div').children('a').text();
+                var getposition = getall.parent().parent().children('span').children('i').text();
+                $('#edit_node_name').val(getname);
+                $('#edit_node_position').val(getposition);
+                classList = $(this).parent().parent().attr('class').split(/\s+/);
+                var tipo_n;
+                $.each(classList, function(index,item) {
+                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
+                        del_node = item;
+                    }
+                    if(item == "root" || item == "child"){
+                        tipo_n = item;
+                    }
+                });
+                node_to_edit = $("li."+del_node+":not('.temp')");
+            }).fancybox({
+                maxWidth	: 800,
+                maxHeight	: 800,
+                fitToView	: false,
+                width		: '70%',
+                height		: '70%',
+                autoSize	: false,
+                closeClick	: false,
+                openEffect	: 'none',
+                closeEffect	: 'none'
+            });
+
+            $("#edit_node").click(function(e){
+                e.preventDefault();
+                var edit_field = $("#edit_node_name");
+                var edit_title = $("#edit_node_position");
+                var texto = edit_field.val();
+                var texti = edit_title.val();
+
+                node_to_edit.find("a").text(texto);
+                node_to_edit.find("i").text(texti);
+//                node_to_edit.find("> .label_node:eq(0) > a").text(texto);
+//                node_to_edit.find("> .label_node:eq(0) > i").text(texti);
+                edit_field.val("");
+                edit_title.val("");
+                $.fancybox.close();
+                init_tree();
+
             });
 
 
@@ -432,6 +444,7 @@ ul#upload-chart li {
             scroll()
 
         });
+
     </script>
   </head>
 
@@ -476,17 +489,24 @@ ul#upload-chart li {
         </form>
     </div>
 
-    <div id="fancy_edit" class="hidden">$
+    <div id="fancy_edit" class="hidden">
         <form action="." method="post" id="edit_node_form">
             <h1 class="title_lb">Edit Node</h1>
             <div class="span12" id="edit_nodo">            
-                <p class="notice span3">
-                    Enter node caption
-                </p>
+                <label for="node_name">
+                    <span class="title_lb">Customer : </span>
+                </label>
                 <input type="text" name="node_name" id="edit_node_name" class="span6"/>
-				 <input type="text" name="node_title" id="edit_node_title" class="span6"/>
+                <br>
+                <br>
+                <label for="node_position">
+                    <span class="title_lb">Position : </span>
+                </label>
+                <input type="text" name="node_title" id="edit_node_position" class="span6"/>
+                <br>
+                <br>
                 <div class="span12">
-                    <button id="edit_node" class="aqua_btn span3 hidden">Edit</button>
+                    <button id="edit_node" class="btn btn-primary aqua_btn span3 hidden">Edit</button>
                 </div>
             </div>
         </form>
