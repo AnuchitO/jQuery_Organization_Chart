@@ -85,6 +85,10 @@ ul#upload-chart li {
     box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);*/
             }
 </style>
+    <!--<style type="text/css">-->
+        <!--html, body {margin: 0px; padding: 0px;width: 100%;height: 100%;overflow: hidden; }-->
+        <!--#chartZoom {width: 100%;height: 100%; }-->
+    <!--</style>-->
 
     <script>
 
@@ -250,26 +254,25 @@ ul#upload-chart li {
              });
 			//start loop the json and form the html
             var classUnic = "unic";
-			function loops(root){
-				if (root.parent == ""){
-				   items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'>"+
-            "<span ><div class='label_name'><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
-				}
-				else{
-				   items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div><a  class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
-				}
-				var c = data({"parent":root.id}).count();
-				if (c != 0){
-				  items.push("<ul>");
-				  data({"parent":root.id}).each(function (record,recordnumber) {
-					loops(record);
-				  });
-				 items.push("</ul></li>");
-				}
-				else{
-				  items.push("</li>");
-				}	
-			}// End the generate html code
+            function loops(root){
+                if (root.parent == ""){
+                    items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'>"+"<span ><div class='label_name'><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
+                }
+                else{
+                    items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div><a  class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
+                }
+                var c = data({"parent":root.id}).count();
+                if (c != 0){
+                    items.push("<ul>");
+                    data({"parent":root.id}).each(function (record,recordnumber) {
+                        loops(record);
+                    });
+                    items.push("</ul></li>");
+                }
+                else{
+                    items.push("</li>");
+                }
+            }// End the generate html code
 			
 			//push to html code
 			$( "<ul/>", {
@@ -470,6 +473,7 @@ ul#upload-chart li {
   </head>
 
   <body onload="prettyPrint();" style="background:#e05e00;">
+
     <div class="topbar">
         <div class="topbar-inner ">
             <div class="container">
@@ -491,7 +495,9 @@ ul#upload-chart li {
     <ul id="upload-chart">
 		<!--li id="Albert" class="node child"><span class="label_node"><a href="#">Albert</a><br><i>Data Architect</i> </span><div class="details"><p><strong>rank:</strong>Vice President</p><p><strong>department:</strong>Research and Development</p></div></li-->
 	</ul>
-    <div id="chart" class="orgChart" align="center"></div>
+    <div id="chartZoom">
+        <div id="chart" class="orgChart" align="center"></div>
+    </div>
     <div id="fancy" class="hidden">
         <form action="." method="post" id="add_node_form">
             <h1 class="title_lb">New Node</h1>
@@ -550,6 +556,8 @@ ul#upload-chart li {
         </form>
     </div>
 
+    <!--<img id="xxx" src="images/wallpaper.jpg">-->
+
 <script type="text/javascript">
 	function remChild(removing){
 		$("#upload-chart").append(removing);
@@ -599,10 +607,7 @@ ul#upload-chart li {
             console.log(JSON.stringify(hierarchy));
 			alert("Check console")
 		}
-		
-		
 
-		
         $(document).ready(function() {
             /* Custom jQuery for the example */
             $("#show-list").click(function(e){
@@ -625,6 +630,35 @@ ul#upload-chart li {
                 });
             });
         });
+
+//    =========================================
+
+//    var f = function(){
+//
+//        function eventHandler(event){
+//            var width = parseInt(window.getComputedStyle(this).width);
+//            var height = parseInt(window.getComputedStyle(this).height);
+//            var zoom = 30;
+//
+//            if(event.wheelDelta > 0){
+//                this.style.width = Math.min(2000,width + zoom) + "px";
+//                this.style.height = Math.min(2000,height + zoom) + "px";
+//                console.log("+++");
+//            }else{
+//                this.style.width = Math.min(200,width - zoom) + "px";
+//                this.style.height = Math.min(200,height - zoom) + "px";
+//                console.log("---");
+//            }
+//            event.preventDefault();
+//        }
+//        var elementZoom = document.getElementById('xxx');
+//        elementZoom.addEventListener('DOMMouseScroll',eventHandler,false);
+//    };
+//    window.addEventListener('load', f,false);
+
+//    ===============================
+
     </script>
+
 </body>
 </html>
