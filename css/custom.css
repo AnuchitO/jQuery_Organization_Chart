@@ -116,6 +116,9 @@ a:hover{
 .edit {
     background: url(../images/edit_squere.png) no-repeat 50% 50%;
 }
+.car{
+	background: url(../images/Driver.png) no-repeat 50% 50%;
+}
 .exp-col {
     background: url(../images/col.png) no-repeat 50% 50%;
     position: absolute;
@@ -126,7 +129,7 @@ a:hover{
     background: url(../images/exp.png) no-repeat 50% 50%;
 }
 
-.edit, .del, .add, .exp, .col, .exp-col{
+.edit, .del, .add, .exp, .col, .exp-col, .car{
     display: inline-block;
     width: 16px;
     height: 16px;
