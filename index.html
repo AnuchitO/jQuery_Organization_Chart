@@ -9,12 +9,16 @@
     <script type="text/javascript" src="js/prettify.js"></script>
     
     <!-- jQuery includes -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>-->
 
-    <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
+    <!-- jQuery includes Offline-->
+    <script src="js/jquery1.7.1jquery.min.js"></script>
+    <script src="js/jqueryui1.8.16jquery-ui.min.js"></script>
+
+    <script src="fancybox/jquery.fancybox.js"></script>
     <script src="js/jquery.jOrgChart.js"></script>
-	<script type="text/javascript" src="js/taffy.js"></script>
+	<script src="js/taffy.js"></script>
     <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
 <style type="text/css">
 
@@ -288,7 +292,7 @@ ul#upload-chart li {
 		 loadjson();
 		 init_tree();
 
-            var add_to_node, del_node, classList;
+            var add_to_node, del_node, classList, add_car_to_node;
 			var regx = /\w*(row)/;
 			if ($('#upload-chart').length == 0) {
 			   $("body").append("<ul id='upload-chart'></ul>")
@@ -446,6 +450,26 @@ ul#upload-chart li {
                 init_tree();
 
             });
+            $(".car").live("click", function(e){
+                classList = $(this).parent().parent().attr('class').split(/\s+/);
+                $.each(classList, function(index,item) {
+                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
+                        if(item.contains("unic")){
+                            add_car_to_node = item;
+                        }
+                    }
+                });
+            }).fancybox({
+                maxWidth	: 800,
+                maxHeight	: 800,
+                fitToView	: false,
+                width		: '70%',
+                height		: '70%',
+                autoSize	: false,
+                closeClick	: false,
+                openEffect	: 'none',
+                closeEffect	: 'none'
+            });
 
 
             //forms behavior
@@ -498,6 +522,22 @@ ul#upload-chart li {
     <div id="chartZoom">
         <div id="chart" class="orgChart" align="center"></div>
     </div>
+
+
+    <!--<div id="test" class="hidden">-->
+        <!--<form action="." method="post" id="add_node_car_form">-->
+            <!--<h1 class="title_lb">New Node</h1>-->
+            <!--<div class="span12" id="add_nodo_car">-->
+                <!--<label for="car_driver_name" ><span class="title_lb" >Name : </span> </label>-->
+                <!--<input type="text" name="customer_name" id="new_node_car_name" class="span9"/>-->
+                <!--<br/> <br/>-->
+                <!--<div class="span12">-->
+                <!--<button id="add_node_car" class="btn btn-primary aqua_btn span3">Add</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
+
     <div id="fancy" class="hidden">
         <form action="." method="post" id="add_node_form">
             <h1 class="title_lb">New Node</h1>
@@ -596,9 +636,9 @@ ul#upload-chart li {
 				    var user = new Object();
 					user.id = uid;
 					user.name = name;
-                    user.rank = hid[0].childNodes[1].childNodes[0].textContent.replace(hid[0].childNodes[1].childNodes[0].firstChild.textContent,"");
-                    user.department = hid[0].childNodes[1].childNodes[1].textContent.replace(hid[0].childNodes[1].childNodes[1].firstChild.textContent,"");
-                    user.level = hid[0].firstChild.childNodes[2].textContent;
+                    user.rank = $(this).find("p")[0].innerHTML.split("</strong>")[1];
+                    user.department = $(this).find("p")[1].innerHTML.split("</strong>")[1];
+                    user.level = $(this).find("i")[0].innerHTML;
 					user.parent = parent;
 					hierarchy.push(user);
 				}

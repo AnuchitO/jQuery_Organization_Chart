@@ -23,11 +23,11 @@ var cx = 0;
 
         // build the tree
         $this = $(this);
-		
+
         var $container = $("<div class='" + opts.chartClass + "'/>");
         if($this.is("ul")) {
-		
-		    //add color to row wise 
+
+		    //add color to row wise
 		    $this.find("li").each(function(){
 				classList = $(this).attr('class').split(/\s+/);
 				$.each(classList, function(index,item) {
@@ -89,7 +89,7 @@ var cx = 0;
                 stack       : 'div.node'
             });
 
-			
+
             $nodeParts.droppable({
                 accept      : '.node',
                 activeClass : 'drag-active',
@@ -105,51 +105,51 @@ var cx = 0;
              });
 
             // Drag start event handler for nodes
-			
+
             $divNode.bind("dragstart", function handleDragStart( event, ui ){
 				var start_event = ui.helper
 				var sourceNode = $(this);
 				if(start_event.is("div")){
 					sourceNode.parentsUntil('.node-container').find('*').filter('.node').droppable('disable');
-				}	
+				}
 				else if(start_event.is("li")){
 					sourceNode.find('*').filter('.node').droppable('disable');
 				}
             });
-			
-			
+
+
 	        // Drag stop event handler for nodes
             $divNode.bind("dragstop", function handleDragStop( event, ui ){
 
 				//refresh side bar
 				var sideLi = $("#upload-chart").html();
-				$("#upload-chart").empty();			
+				$("#upload-chart").empty();
 				$("#upload-chart").append(sideLi);
 				if($("#upload-chart li:last-child").hasClass("ui-draggable-dragging")){
 				    $("#upload-chart li:last-child").remove();
 				}
-			    
+
 				//remove list from side bar when added to org-chart
 				if(removeside_node!=""){
 					$("#upload-chart #"+removeside_node).remove();
 					removeside_node = "";
 				}
-				
+
 				/* reload the plugin */
 				$(opts.chartElement).children().remove();
                 $this.jOrgChart(opts);
-				
+
 			});
-         
-      
+
+
             // Drop event handler for nodes
 			var removeside_node = ""
             $divNode.bind("drop", function handleDropEvent( event, ui ) {
-			
+
                 var targetID = $(this).data("tree-node");
                 var targetLi = $this.find("li").filter(function() { return $(this).data("tree-node") === targetID; } );
                 var targetUl = targetLi.children('ul');
-				
+
                 var sourceID = ui.draggable.data("tree-node");
 				if(sourceID == null){
 				   var lilength = $this.find("li").length;
@@ -166,9 +166,9 @@ var cx = 0;
                     sourceUl.remove();
                    }
 				}
-				
+
 			    sourceLi.removeClass("node").removeClass("ui-draggable")
-				
+
                 if (targetUl.length > 0){
                     targetUl.append(sourceLi);
                 } else {
@@ -253,7 +253,7 @@ var cx = 0;
             .remove()
             .end();
 
-			
+
 	    // Expand and contract nodes
 		if ($childNodes.length > 0) {
 		   $nodeDiv.find(".opciones:eq(0)").closest(".node").append("<span class='exp-col'></span>");
@@ -338,13 +338,19 @@ var cx = 0;
             });
         }
         if(!$nodeDiv.hasClass("temp")){
-            $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
-			$nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
+
             if($nodeDiv.hasClass("child")){
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
                 $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
+            }else{
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='car' href='#test'></span>");
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
             }
         }else{
             $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span><span class='del'></span>");
+
         }
 
         $table.append($tbody);
