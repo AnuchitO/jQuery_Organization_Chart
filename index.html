@@ -596,9 +596,9 @@ ul#upload-chart li {
 				    var user = new Object();
 					user.id = uid;
 					user.name = name;
-                    user.rank = hid[0].childNodes[1].childNodes[0].textContent.replace(hid[0].childNodes[1].childNodes[0].firstChild.textContent,"");
-                    user.department = hid[0].childNodes[1].childNodes[1].textContent.replace(hid[0].childNodes[1].childNodes[1].firstChild.textContent,"");
-                    user.level = hid[0].firstChild.childNodes[2].textContent;
+                    user.rank = $(this).find("p")[0].innerHTML.split("</strong>")[1];
+                    user.department = $(this).find("p")[1].innerHTML.split("</strong>")[1];
+                    user.level = $(this).find("i")[0].innerHTML;
 					user.parent = parent;
 					hierarchy.push(user);
 				}
