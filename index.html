@@ -1,705 +1,115 @@
-<!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Softplus Organization Chart</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
-    <link rel="stylesheet" href="css/custom.css"/>
-    <link href="css/prettify.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" />
-    <script type="text/javascript" src="js/prettify.js"></script>
-    
-    <!-- jQuery includes -->
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>-->
-
-    <!-- jQuery includes Offline-->
-    <script src="js/jquery1.7.1jquery.min.js"></script>
-    <script src="js/jqueryui1.8.16jquery-ui.min.js"></script>
-
-    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-    <script src="fancybox/jquery.fancybox.js"></script>
-    <script src="js/jquery.jOrgChart.js"></script>
-	<script src="js/taffy.js"></script>
-    <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
-<style type="text/css">
-
-#getjson {
-width : 100px;
-height : 50px;
-border-radius : 3px;
-margin-left: 20px;
-margin-top: 20px;
-}
-/*
-#chart{
-    height: 300px;
-    overflow: scroll;
-    width: 1024px;
-	resize:both;
-    overflow:auto;
-}
-*/
-ul#upload-chart{
-float: right;
-    list-style: none outside none;}
-ul#upload-chart li {
-    background: none repeat scroll 0 0 #ECDC20;
-    border: 1px solid #808080;
-    border-radius: 2px;
-    height: 44px;
-    margin-top: 2px;
-    padding-top: 5px;
-    width: 200px;
-}
-.label_name{
-        position: relative;
-        top: 70px;
-        left: 3px;
-        float: left;
-        font-size: 18px;
-}
-
-.label_level {
-        position: relative;
-        top: -15px;
-        left: -10px;
-        float: right;
-        width: 150px;
-        text-align:right;
-        word-wrap: break-word;
-
-}
-
-.crop{  
-        overflow: hidden; 
-        position: absolute;
-        top: 4px;
-        left: -70px;
-        z-index: -1;
-    }
-
-.crop img { width: 25%; /*Here you can use margins for accurate positioning of cropped image*/
-            
-            -webkit-border-radius: 50em;
-            -moz-border-radius: 50em;
-            border-radius: 0.5em;
-
-
-/*-webkit-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
-    -moz-box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
-    box-shadow: 0 0 20px rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);*/
-            }
-</style>
-    <!--<style type="text/css">-->
-        <!--html, body {margin: 0px; padding: 0px;width: 100%;height: 100%;overflow: hidden; }-->
-        <!--#chartZoom {width: 100%;height: 100%; }-->
-    <!--</style>-->
-
-    <script>
-
-        function init_tree(){
-            var opts = {
-                chartElement : '#chart',
-                dragAndDrop  : true
-            };
-            $("#chart").html("");
-            $("#org").jOrgChart(opts);
-        }
-		function scroll(){
-		  $(".node").click(function(){
-		  $("#chart").scrollTop(0)
-		  $("#chart").scrollTop($(this).offset().top-140);
-		})}
-		
-        var click_flag = true;
-        var node_to_edit;
-         // read json and convert to html formate
-		function loadjson(){
-			var items = [];
-			var data = TAFFY([			
-			   {
-				  "id":1,
-				  "name":"Panupong C.",
-                  "rank":"SDM",
-                  "department":"Administration department",
-				  "level":"CEO",
-                  "image":"images/f-1.jpg",
-				  "parent":""
-			   },
-			   {
-				  "id":2,
-				  "name":"Suriya e.",
-                  "rank":"Software Analyst",
-                  "department":"Development department",
-				  "level":"SA",
-                  "image":"images/f-2.jpg",
-				  "parent":1
-			   },
-			   {
-				  "id":3,
-				  "name":"Kumphol",
-                  "rank":"Software Analyst",
-                  "department":"Development department",
-				  "level":"SA",
-                  "image":"images/f-3.jpg",
-				  "parent":1
-			   },
-			   {
-				  "id":4,
-				  "name":"Kritchanaphak J.",
-                  "rank":"Assistant Software Analyst",
-                  "department":"Development department",
-				  "level":"ASA",
-                  "image":"images/f-4.jpg",
-				  "parent":1
-			   },
-			   {
-				  "id":5,
-				  "name":"Sarawut e.",
-                  "rank":"Assistant Software Analyst",
-                  "department":"Development department",
-				  "level":"ASA",
-                  "image":"images/f-5.jpg",
-				  "parent":1
-			   },
-			   {
-				  "id":6,
-				  "name":"Anuchit P.",
-                  "rank":"Software Developer",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-6.jpg",
-				  "parent":2
-			   },
-			   {
-				  "id":7,
-				  "name":"Wutthinan W.",
-                  "rank":"Software Developer",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-7.jpg",
-				  "parent":4
-			   },
-			   {
-				  "id":8,
-				  "name":"Apichat E.",
-                  "rank":"Software Developer",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-8.jpg",
-				  "parent":5
-			   },
-			   {
-				  "id":9,
-				  "name":"Sirirad C.",
-                  "rank":"Software Developer",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-9.jpg",
-				  "parent":2
-			   },
-			   {
-				  "id":10,
-				  "name":"Chutimon C.",
-                  "rank":"Software Developer",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-10.jpg",
-				  "parent":3
-			   },
-			   {
-				  "id":11,
-				  "name":"New SD",
-                  "rank":"SD",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-11.jpg",
-				  "parent":4
-			   },
-			   {
-				  "id":12,
-				  "name":"New SD",
-                  "rank":"SD",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-12.jpg",
-				  "parent":5
-			   },
-			   {
-				  "id":13,
-				  "name":"New SD",
-                  "rank":"Softwaloadjsonre Developer",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-13.jpg",
-				  "parent":6
-			   },
-			   {
-				  "id":14,
-				  "name":"New SD",
-                  "rank":"SD",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-14.jpg",
-				  "parent":3
-			   },
-			   {
-				  "id":15,
-				  "name":"New SD",
-                  "rank":"SD",
-                  "department":"Development department",
-				  "level":"SD",
-                  "image":"images/f-15.jpg",
-				  "parent":3
-			   }
-				]);
-			
-			 data({"parent":""}).each(function (record,recordnumber) {
-			     loops(record);
-             });
-			//start loop the json and form the html
-            var classUnic = "unic";
-            function loops(root){
-                if (root.parent == ""){
-                    items.push("<li class='root unic" + root.id + " root' id='" + root.id + "'>"+"<span ><div class='label_name'><a  href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='images/f-9.jpg' alt=''/></div>");
-                }
-                else{
-                    items.push("<li class='child unic" + root.id + " root' id='" + root.id+ "'><span ><div><a  class='label_name' href='#'>" + root.name+"</a></div></br><i class='label_level'>"+ root.level+ "</i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + root.rank+"</p><p><strong>department:</strong>" + root.department+"</p></div><div class='crop'><img src='"+root.image+"' alt=''/></div>");
-                }
-                var c = data({"parent":root.id}).count();
-                if (c != 0){
-                    items.push("<ul>");
-                    data({"parent":root.id}).each(function (record,recordnumber) {
-                        loops(record);
-                    });
-                    items.push("</ul></li>");
-                }
-                else{
-                    items.push("</li>");
-                }
-            }// End the generate html code
-			
-			//push to html code
-			$( "<ul/>", {
-			"id": "org",
-			"style" : "float:right;",
-			html: items.join( "" )
-			}).appendTo( "body" );
+﻿<html>
+<head>
+    <title>overview</title>	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
+	  	
+	<script src="getorgchart/getorgchart.js"></script>
+	<link href="getorgchart/getorgchart.css" rel="stylesheet" />
+	 
+    <style type="text/css"> 
+        html, body {margin: 0px; padding: 0px;width: 100%;height: 100%;overflow: hidden; }
+        #people {width: 100%;height: 100%; }   
+    </style>
+</head>
+<body>   
+    <div id="people"></div>
+    <script type="text/ecmascript">
+	$("#people").getOrgChart({			
+		theme: "monica",
+		primaryColumns: ["name", "title"],
+		imageColumn: "image",
+		gridView: true,
+		dataSource: [
+			{
+			  id: 1,
+			  parentId: null,
+			  name: "Panupong C.",
+			  title: "CEO",
+			  phone: "678-772-470",
+			  mail: "lemmons@jourrapide.com",
+			  adress: "Atlanta, GA 30303",
+			  image: "images/f-11.jpg"
+			},
+			{
+			  id: 2,
+			  parentId: 1,
+			  name: "Ava Field",
+			  title: "Paper goods machine setter",
+			  phone: "937-912-4971",
+			  mail: "anderson@jourrapide.com",
+			  image: "images/f-10.jpg"
+			},
+			{
+			  id: 3,
+			  parentId: 1,
+			  name: "Evie Johnson",
+			  title: "Employer relations representative",
+			  phone: "314-722-6164",
+			  mail: "thornton@armyspy.com",
+			  image: "images/f-9.jpg"
+			},
+			{
+			  id: 4,
+			  parentId: 1,
+			  name: "Paul Shetler",
+			  title: "Teaching assistant",
+			  phone: "330-263-6439",
+			  mail: "shetler@rhyta.com",
+			  image: "images/f-5.jpg"
+			},
+			{
+			  id: 5,
+			  parentId: 1,
+			  name: "Rebecca Francis",
+			  title: "Welding machine setter",
+			  phone: "408-460-0589",
+			  image: "images/f-4.jpg"
+			},
+			{
+			  id: 6,
+			  parentId: 1,
+			  name: "Rebecca Randall",
+			  title: "Optometrist",
+			  phone: "801-920-9842",
+			  mail: "JasonWGoodman@armyspy.com",
+			  image: "images/f-8.jpg"
+			},
+			{
+			  id: 7,
+			  parentId: 4,
+			  name: "Spencer May",
+			  title: "System operator",
+			  phone: "Conservation scientist",
+			  mail: "hodges@teleworm.us",
+			  image: "images/f-7.jpg"
+			},
+			{
+			  id: 8,
+			  parentId: 4,
+			  name: "Max Ford",
+			  title: "Budget manager",
+			  phone: "989-474-8325",
+			  mail: "hunter@teleworm.us",
+			  image: "images/f-6.jpg"
+			},
+			{
+			  id: 9,
+			  parentId: 4,
+			  name: "Riley Bray",
+			  title: "Structural metal fabricator",
+			  phone: "479-359-2159",
+			  image: "images/f-3.jpg"
+			},
+			{
+			  id: 10,
+			  parentId: 4,
+			  name: "Callum Whitehouse",
+			  title: "Radar controller",
+			  phone: "847-474-8775",
+			  image: "images/f-2.jpg"
 			}
-
-
-        $(document).on("ready", function(){
-		
-		 loadjson();
-		 init_tree();
-
-            var add_to_node, del_node, classList, add_car_to_node;
-			var regx = /\w*(row)/;
-			if ($('#upload-chart').length == 0) {
-			   $("body").append("<ul id='upload-chart'></ul>")
-			}
-
-            //-- Listo editar :D
-            $(".del").live("click", function(e){
-                if (confirm('Are you sure?'))
-                {
-                    var nodo=$(this);
-
-                    if(!nodo.parent().parent().hasClass("temp")){
-                        var nodeDiv = nodo.parent().parent();
-                        var cu = nodeDiv.find("a").attr("rel");
-                        classList = nodeDiv.attr('class').split(/\s+/);
-                        $.each(classList, function(index,item) {
-                            if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                                del_node = item;
-                            }
-                        });
-                        var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
-                        remChild(element);
-                        init_tree();
-                    }
-                }
-
-            });
-            $(".add").live("click", function(){
-                $("#new_node_customer").val("");
-                $("#new_node_position").val("");
-                $("#new_node_rank").val("");
-                $("#new_node_department").val("");
-                $("#add_node").show();
-                click_flag=false;
-
-                // classList = $(this).parent().parent().attr('class').split(/\s+/);
-                // $.each(classList, function(index,item) {
-                //     if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
-                //         add_to_node = item;
-                //     }
-                // });
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
-                $.each(classList, function(index,item) {
-                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
-                       if(item.contains("unic")){
-                            add_to_node = item;
-                       }                        
-                    }
-                });
-
-            }).fancybox({
-                        maxWidth	: 800,
-                        maxHeight	: 800,
-                        fitToView	: false,
-                        width		: '70%',
-                        height		: '70%',
-                        autoSize	: false,
-                        closeClick	: false,
-                        openEffect	: 'none',
-                        closeEffect	: 'none',
-                        afterClose  : function(){click_flag=true;init_tree()}
-                    });
-
-            $("#add_node").click(function(e){
-                e.preventDefault();
-
-                //unidad de consumo agregada, agregar li a la lista, y refrescar arbol
-                var newAdd = [];
-                var tipo_nodo = "";
-                var text_customer = $("#new_node_customer").val();
-                var text_position = $("#new_node_position").val();
-                var text_rank = $("#new_node_rank").val();
-                var text_department = $("#new_node_department").val();
-
-                $("#new_node_customer").val("");
-                $("#new_node_position").val("");
-                $("#new_node_rank").val("");
-                $("#new_node_department").val("");
-
-//                console.log("customer : "+text_customer);
-//                console.log("position : "+text_position);
-//                console.log("rank : "+text_rank);
-//                console.log("department : "+text_department);
-
-                var $node = $("li."+add_to_node+":not('.temp')");
-                var childs = $("#org li").size();
-                childs += (childs+4);
-                childs++;
-                var unicClass = add_to_node.replace(add_to_node.replace ( /[^\d.]/g, '' ),'');
-                unicClass+=childs;
-                tipo_nodo += "child "+unicClass+"'id='"+childs;
-                var append_text = "<li class='"+ tipo_nodo +"'>";
-                append_text += "<span><div class='label_name'><a href='#'>" + text_customer + "</a></div><br><i class='label_level'>"+text_position+
-                "</i></span></i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + text_rank+
-                "</p><p><strong>department:</strong>" +text_department+"</p></div><div class='crop'><img src='images/f-3.jpg' alt=''/></div>";
-                append_text += "</li>";
-                if($node.find("ul").size()==0){
-                    append_text = "<ul>" + append_text + "</ul>";
-                    $node.append(append_text);
-                }else{
-                    $node.find("ul:eq(0)").append(append_text);
-                }
-                $.fancybox.close();
-                init_tree();
-                scroll()
-            });
-
-            $(".edit").live("click", function(e){
-                var getall=$(this);
-                var getname = getall.parent().parent().children('span').children('div').children('a').text();
-                var getposition = getall.parent().parent().children('span').children('i').text();
-                var getrank = getall.parent().parent().children('div.details').children('p')[0].innerHTML.split("</strong>")[1];
-                var getdepartment = getall.parent().parent().children('div.details').children('p')[1].innerHTML.split("</strong>")[1];
-//                console.log(getall.parent().parent().children('div.details').children('p')[1].innerHTML.split("</strong>")[1]);
-                $('#edit_node_name').val(getname);
-                $('#edit_node_position').val(getposition);
-                $('#edit_node_rank').val(getrank);
-                $('#edit_node_department').val(getdepartment);
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
-                var tipo_n;
-                $.each(classList, function(index,item) {
-                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                        del_node = item;
-                    }
-                    if(item == "root" || item == "child"){
-                        tipo_n = item;
-                    }
-                });
-                node_to_edit = $("li."+del_node+":not('.temp')");
-            }).fancybox({
-                maxWidth	: 800,
-                maxHeight	: 800,
-                fitToView	: false,
-                width		: '70%',
-                height		: '70%',
-                autoSize	: false,
-                closeClick	: false,
-                openEffect	: 'none',
-                closeEffect	: 'none'
-            });
-
-            $("#edit_node").click(function(e){
-                e.preventDefault();
-                var edit_field = $("#edit_node_name").val();
-                var edit_title = $("#edit_node_position").val();
-                var edit_rank = $('#edit_node_rank').val();
-                var edit_department = $('#edit_node_department').val();
-
-                node_to_edit.find("a").text(edit_field);
-                node_to_edit.find("i").text(edit_title);
-                node_to_edit.find("p")[0].innerHTML = "<strong>rank:</strong>"+edit_rank
-                node_to_edit.find("p")[1].innerHTML = "<strong>department:</strong>"+edit_department
-
-                $.fancybox.close();
-                init_tree();
-
-            });
-            $(".car").live("click", function(e){
-                classList = $(this).parent().parent().attr('class').split(/\s+/);
-                $.each(classList, function(index,item) {
-                    if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable"){
-                        if(item.contains("unic")){
-                            add_car_to_node = item;
-                        }
-                    }
-                });
-            }).fancybox({
-                maxWidth	: 800,
-                maxHeight	: 800,
-                fitToView	: false,
-                width		: '70%',
-                height		: '70%',
-                autoSize	: false,
-                closeClick	: false,
-                openEffect	: 'none',
-                closeEffect	: 'none'
-            });
-
-
-            //forms behavior
-//            $("#new_node_name, #edit_node_name").on("keyup", function(evt){
-//                var id = $(this).attr("id");
-//                if($(this).val() != ''){
-//                    if(id == "new_node_name"){
-//                        $("#add_node").show();
-//                    }else{
-//                        $("#edit_node").show();
-//                    }
-//                }else{
-//                    if(id == "new_node_name"){
-//                        $("#add_node").hide();
-//                    }else{
-//                        $("#edit_node").hide();
-//                    }
-//                }
-//            });
-            scroll()
-
-        });
-
-    </script>
-  </head>
-
-  <body onload="prettyPrint();" style="background:#e05e00;">
-
-    <div class="topbar">
-        <div class="topbar-inner ">
-            <div class="container">
-                <a class="brand" href="#">Softplus Organization Chart</a>
-                <ul class="nav ">
-                    
-                </ul>
-                <div class="pull-right">
-                    <!--div class="alert-message info" id="show-list">Show underlying list.</div-->
-                    <pre class="prettyprint lang-html" id="list-html" style="display:none"></pre>
-                </div>              
-            </div>
-        </div>
-    </div>
-    	<button id="getjson" onclick="makeArrays()">Generate json</button>
-    <div id="in" style="display:none">
-      
-   </div>            
-    <ul id="upload-chart">
-		<!--li id="Albert" class="node child"><span class="label_node"><a href="#">Albert</a><br><i>Data Architect</i> </span><div class="details"><p><strong>rank:</strong>Vice President</p><p><strong>department:</strong>Research and Development</p></div></li-->
-	</ul>
-    <div id="chartZoom">
-        <div id="chart" class="orgChart" align="center"></div>
-    </div>
-
-
-    <!--<div id="test" class="hidden">-->
-        <!--<form action="." method="post" id="add_node_car_form">-->
-            <!--<h1 class="title_lb">New Node</h1>-->
-            <!--<div class="span12" id="add_nodo_car">-->
-                <!--<label for="car_driver_name" ><span class="title_lb" >Name : </span> </label>-->
-                <!--<input type="text" name="customer_name" id="new_node_car_name" class="span9"/>-->
-                <!--<br/> <br/>-->
-                <!--<div class="span12">-->
-                <!--<button id="add_node_car" class="btn btn-primary aqua_btn span3">Add</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</form>-->
-    <!--</div>-->
-
-    <div id="fancy" class="hidden">
-        <form action="." method="post" id="add_node_form">
-            <h1 class="title_lb">New Node</h1>
-            <div class="span12" id="add_nodo">
-                <label for="customer_name" ><span class="title_lb" >Customer : </span> </label>
-                <input type="text" name="customer_name" id="new_node_customer" class="span9"/>
-                <br/> <br/>
-                <label for="position_name" ><span class="title_lb" >Position : </span> </label>
-                <input type="text" name="position_name" id="new_node_position" class="span9"/>
-                <br/> <br/>
-                <label for="rank_name" ><span class="title_lb" >Rank : </span> </label>
-                <input type="text" name="rank_name" id="new_node_rank" class="span9"/>
-                <br/> <br/>
-                <label for="department_name" ><span class="title_lb" >Department : </span> </label>
-                <input type="text" name="department_name" id="new_node_department" class="span9"/>
-                <br/> <br/>
-                <div class="span12">
-                    <button id="add_node" class="btn btn-primary aqua_btn span3 hidden">Add</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div id="fancy_edit" class="hidden">
-        <form action="." method="post" id="edit_node_form">
-            <h1 class="title_lb">Edit Node</h1>
-            <div class="span12" id="edit_nodo">            
-                <label for="node_name">
-                    <span class="title_lb">Customer : </span>
-                </label>
-                <input type="text" name="node_name" id="edit_node_name" class="span6"/>
-                <br>
-                <br>
-                <label for="node_position">
-                    <span class="title_lb">Position : </span>
-                </label>
-                <input type="text" name="node_title" id="edit_node_position" class="span6"/>
-                <br>
-                <br>
-                <label for="node_rank">
-                    <span class="title_lb">Rank : </span>
-                </label>
-                <input type="text" name="node_title" id="edit_node_rank" class="span6"/>
-                <br>
-                <br>
-                <label for="node_Department">
-                    <span class="title_lb">Department : </span>
-                </label>
-                <input type="text" name="node_title" id="edit_node_department" class="span6"/>
-                <br>
-                <br>
-                <div class="span12">
-                    <button id="edit_node" class="btn btn-primary aqua_btn span3">Edit</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
-<script type="text/javascript" src="js/zoom.js"></script>
-<script type="text/javascript">
-	function remChild(removing){
-		$("#upload-chart").append(removing);
-		$("#upload-chart ul li").each(function(){
-			var Orgli = $(this).removeAttr("class").addClass("node").addClass("child").clone();
-			$(this).remove();
-			$("#upload-chart").append(Orgli);
-		});
-		$("#upload-chart ul").remove();
-		var sideLi = $("#upload-chart").html();
-		$("#upload-chart").empty();			
-		$("#upload-chart").append(sideLi);
-	}
-	function makeArrays()
-		{
-			var hierarchy = [];
- 
-			$("#org li").each(function(){
-				var uid = $(this).attr("id");
-				var name = $(this).find(">:first-child a").text();
-				var parent = "";
-				var hid = $(this).parents("li");
-				if(hid.length == 0) //If this object is the root user, substitute id with "orgName" so the DB knows it's the name of organization and not a user
-				{
-					parent = "root";
-					var user = new Object();
-                    user.id = uid;
-					user.name = name;
-                    user.rank = this.children[1].firstChild.textContent.replace(this.children[1].firstChild.firstChild.textContent,"");
-                    user.department = this.children[1].children[1].textContent.replace(this.children[1].children[1].firstChild.textContent,"");
-                    user.level = this.firstChild.children[2].textContent;
-					user.parent = parent;
-					hierarchy.push(user);                
-				}else{
-                    parent = hid[0].id;
-				    var user = new Object();
-					user.id = uid;
-					user.name = name;
-                    user.rank = $(this).find("p")[0].innerHTML.split("</strong>")[1];
-                    user.department = $(this).find("p")[1].innerHTML.split("</strong>")[1];
-                    user.level = $(this).find("i")[0].innerHTML;
-					user.parent = parent;
-					hierarchy.push(user);
-				}
-			});
-			console.log(hierarchy)
-            console.log(JSON.stringify(hierarchy));
-			alert("Check console")
-		}
-
-        $(document).ready(function() {
-            /* Custom jQuery for the example */
-            $("#show-list").click(function(e){
-                e.preventDefault();
-                
-                $('#list-html').toggle('fast', function(){
-					$('#list-html').text($('#org').html());
-					$("#org").bind("DOMSubtreeModified", function() {
-						$('#list-html').text('');
-						$('#list-html').text($('#org').html());
-						prettyPrint();                
-					});
-                    if($(this).is(':visible')){
-                        $('#show-list').text('Hide underlying list.');
-                        $(".topbar").fadeTo('fast',0.9);
-                    }else{
-                        $('#show-list').text('Show underlying list.');
-                        $(".topbar").fadeTo('fast',1);                  
-                    }
-                });
-            });
-        });
-
-//    =========================================
-
-    var checkZoomIn = 0;
-    var checkZoomOut = 0;
-    var i = 0;
-    $('#chart').mousewheel(function(event) {
-
-        if (event.deltaY == 1) {
-
-            checkZoomOut = 0;
-            checkZoomIn++;
-            if(checkZoomIn == 5){
-                zoom.to({ element: event.target });
-            }
-//            console.log("checkZoomIn "+checkZoomIn);
-        } else{
-
-            checkZoomIn = 0;
-            checkZoomOut++
-            if(checkZoomOut == 5){
-                zoom.to({ element: event.target });
-            }
-//            console.log("checkZoomOut "+checkZoomOut);
-        }
-        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
-    });
-
-    </script>
-
+		]
+	});
+    </script>	
 </body>
 </html>
