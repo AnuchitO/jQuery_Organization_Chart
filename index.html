@@ -16,6 +16,7 @@
     <script src="js/jquery1.7.1jquery.min.js"></script>
     <script src="js/jqueryui1.8.16jquery-ui.min.js"></script>
 
+    <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
     <script src="fancybox/jquery.fancybox.js"></script>
     <script src="js/jquery.jOrgChart.js"></script>
 	<script src="js/taffy.js"></script>
@@ -596,8 +597,8 @@ ul#upload-chart li {
         </form>
     </div>
 
-    <!--<img id="xxx" src="images/wallpaper.jpg">-->
 
+<script type="text/javascript" src="js/zoom.js"></script>
 <script type="text/javascript">
 	function remChild(removing){
 		$("#upload-chart").append(removing);
@@ -673,30 +674,30 @@ ul#upload-chart li {
 
 //    =========================================
 
-//    var f = function(){
-//
-//        function eventHandler(event){
-//            var width = parseInt(window.getComputedStyle(this).width);
-//            var height = parseInt(window.getComputedStyle(this).height);
-//            var zoom = 30;
-//
-//            if(event.wheelDelta > 0){
-//                this.style.width = Math.min(2000,width + zoom) + "px";
-//                this.style.height = Math.min(2000,height + zoom) + "px";
-//                console.log("+++");
-//            }else{
-//                this.style.width = Math.min(200,width - zoom) + "px";
-//                this.style.height = Math.min(200,height - zoom) + "px";
-//                console.log("---");
-//            }
-//            event.preventDefault();
-//        }
-//        var elementZoom = document.getElementById('xxx');
-//        elementZoom.addEventListener('DOMMouseScroll',eventHandler,false);
-//    };
-//    window.addEventListener('load', f,false);
+    var checkZoomIn = 0;
+    var checkZoomOut = 0;
+    var i = 0;
+    $('#chart').mousewheel(function(event) {
 
-//    ===============================
+        if (event.deltaY == 1) {
+
+            checkZoomOut = 0;
+            checkZoomIn++;
+            if(checkZoomIn == 5){
+                zoom.to({ element: event.target });
+            }
+//            console.log("checkZoomIn "+checkZoomIn);
+        } else{
+
+            checkZoomIn = 0;
+            checkZoomOut++
+            if(checkZoomOut == 5){
+                zoom.to({ element: event.target });
+            }
+//            console.log("checkZoomOut "+checkZoomOut);
+        }
+        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
+    });
 
     </script>
 
