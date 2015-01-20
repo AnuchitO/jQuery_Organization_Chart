@@ -340,6 +340,7 @@ var cx = 0;
         if(!$nodeDiv.hasClass("temp")){
 
             if($nodeDiv.hasClass("child")){
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='join_people'></span>");
                 $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
                 $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
                 $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
