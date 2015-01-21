@@ -119,6 +119,9 @@ a:hover{
 .car{
 	background: url(../images/Driver.png) no-repeat 50% 50%;
 }
+.join_people{
+	background: url(../images/join_people.png) no-repeat 50% 50%;
+}
 .exp-col {
     background: url(../images/col.png) no-repeat 50% 50%;
     position: absolute;
@@ -129,7 +132,7 @@ a:hover{
     background: url(../images/exp.png) no-repeat 50% 50%;
 }
 
-.edit, .del, .add, .exp, .col, .exp-col, .car{
+.edit, .del, .add, .exp, .col, .exp-col, .car, .join_people{
     display: inline-block;
     width: 16px;
     height: 16px;
