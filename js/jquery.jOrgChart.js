@@ -16,6 +16,8 @@
  */
 (function($) {
 var cx = 0;
+var check = -1;
+
     $.fn.jOrgChart = function(options) {
 
         var opts = $.extend({}, $.fn.jOrgChart.defaults, options);
@@ -35,6 +37,7 @@ var cx = 0;
                         re = item;
                     }
                 });
+                check = check % 6;
 				if(re != null){
 					$(this).removeClass(re)
 				}
@@ -43,25 +46,119 @@ var cx = 0;
 					$(this).addClass("nrow");
 				}
 				else if (col == 1){
-					$(this).addClass("firow");
+                    //$(this).addClass("firow");
+                    check++;
+                    check = check % 6;
+                    console.log(check);
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 				else if (col == 2){
-					$(this).addClass("serow");
+					//$(this).addClass("serow");
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 				else if (col == 3){
-					$(this).addClass("throw");
+					//$(this).addClass("throw");
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 				else if (col == 4){
-					$(this).addClass("forow");
+					//$(this).addClass("forow");
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 				else if (col == 5){
-					$(this).addClass("firow");
+					//$(this).addClass("firow");
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 				else if (col == 6){
-					$(this).addClass("sirow");
+					//$(this).addClass("sirow");
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 				else {
-					$(this).addClass("norow");
+					//$(this).addClass("norow");
+                    if(check == 0){
+                        $(this).addClass("firow");
+                    }else if(check == 1){
+                        $(this).addClass("serow");
+                    }else if(check == 2){
+                        $(this).addClass("throw");
+                    }else if(check == 3){
+                        $(this).addClass("forow");
+                    }else if(check == 4){
+                        $(this).addClass("sirow");
+                    }else if(check == 5){
+                        $(this).addClass("norow");
+                    }
 				}
 			});
 			$this.find("li.root").each(function(){
