@@ -160,9 +160,11 @@ var check = -1;
                         $(this).addClass("norow");
                     }
 				}
+                console.log(check);
 			});
 			$this.find("li.root").each(function(){
 				buildNode($(this), $container, 0, opts);
+                check = -1;
 			})
         }
         else if($this.is("li")) {
