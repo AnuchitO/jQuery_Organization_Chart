@@ -45,9 +45,9 @@ a:hover{
 
 /* Header */
 .brand{
-	color 				: #E05E00 !important;	
-	font-family 		: georgia;
-	font-style 			: italic;
+	color 				: #ffc40d !important;
+	font-family 		: tahoma;
+	font-style 			: inherit;
 }
 
 /* list stuff */
@@ -144,13 +144,13 @@ a:hover{
     margin-left: 0;
 }
 .jOrgChart .nrow{
-background-color: #F4E8F6;
+background-color: #ececec;
 }
 .jOrgChart .firow{
-background-color: wheat;
+background-color: #90ee90;
 }
 .jOrgChart .serow{
-background-color: #aad3d3; 
+background-color: #aed8d8;
 }
 .jOrgChart .throw{
 background-color: #f7ea7d;
