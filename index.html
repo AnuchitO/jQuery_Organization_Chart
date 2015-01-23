@@ -105,7 +105,7 @@ ul#upload-chart li {
             $("#chart").html("");
             $("#org").jOrgChart(opts);
         }
-		function scroll(){
+		function scroller(){
 		  $(".node").click(function(){
 		  $("#chart").scrollTop(0)
 		  $("#chart").scrollTop($(this).offset().top-140);
@@ -398,7 +398,7 @@ ul#upload-chart li {
                 }
                 $.fancybox.close();
                 init_tree();
-                scroll()
+                scroller();
             });
 
             $(".edit").live("click", function(e){
@@ -472,6 +472,44 @@ ul#upload-chart li {
                 closeEffect	: 'none'
             });
 
+            $(".join_people").live("click",function(e){
+                var getAll = $(this);
+                var getName = getAll.parent().parent().children('span').children('div').children('a').text();
+                var idAll = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.node');
+                var valueAll = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.label_name');
+
+                var arrayId = [];
+                idAll.each(function(e){
+                    var elemId = $(this).attr('class');
+                    var thenum = elemId.replace(/[^0-9]/g,'');
+                    arrayId.push(thenum);
+                });
+
+                valueAll.each(function(index){
+                    var joinName = $(this).text();
+                    if(joinName != getName){
+                        $("#joinSelect").clone().attr('id',arrayId[index]).text(joinName).appendTo('#select_join');
+                    }
+                });
+            }).fancybox({
+                        maxWidth	: 800,
+                        maxHeight	: 800,
+                        fitToView	: false,
+                        width		: '70%',
+                        height		: '70%',
+                        autoSize	: false,
+                        closeClick	: false,
+                        openEffect	: 'none',
+                        closeEffect	: 'none'
+            });
+
+            $("#join_node").click(function(e){
+                $("#joinSelect").remove();
+                $.fancybox.close();
+                init_tree();
+                scroller();
+            });
+
 
             //forms behavior
 //            $("#new_node_name, #edit_node_name").on("keyup", function(evt){
@@ -490,7 +528,7 @@ ul#upload-chart li {
 //                    }
 //                }
 //            });
-            scroll()
+            scroller()
 
         });
 
@@ -597,6 +635,25 @@ ul#upload-chart li {
         </form>
     </div>
 
+    <div id="fancy_join" class="hidden">
+        <form action="." method="post" id="join_node_form">
+            <h1 class="title_lb">Join node</h1>
+            <div class="span12" id="join_nodo">
+                <label for="select_node">
+                    <span class="title_lb">Select to join : </span>
+                </label>
+                <select id="select_join"></select>
+                <br>
+                <br>
+                <div class="span12" >
+                    <button id="join_node" class="btn btn-primary aqua_btn span3" hidden="">Join</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <option id="joinSelect"></option>
+
 
 <script type="text/javascript" src="js/zoom.js"></script>
 <script type="text/javascript">
@@ -674,30 +731,30 @@ ul#upload-chart li {
 
 //    =========================================
 
-//    var checkZoomIn = 0;
-//    var checkZoomOut = 0;
-//    var i = 0;
-//    $('#chart').mousewheel(function(event) {
-//
-//        if (event.deltaY == 1) {
-//
-//            checkZoomOut = 0;
-//            checkZoomIn++;
-//            if(checkZoomIn == 5){
-//                zoom.to({ element: event.target });
-//            }
-////            console.log("checkZoomIn "+checkZoomIn);
-//        } else{
-//
-//            checkZoomIn = 0;
-//            checkZoomOut++
-//            if(checkZoomOut == 5){
-//                zoom.to({ element: event.target });
-//            }
-////            console.log("checkZoomOut "+checkZoomOut);
-//        }
-//        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
-//    });
+    var checkZoomIn = 0;
+    var checkZoomOut = 0;
+    var i = 0;
+    $('#chart').mousewheel(function(event) {
+
+        if (event.deltaY == 1) {
+
+            checkZoomOut = 0;
+            checkZoomIn++;
+            if(checkZoomIn == 5){
+                zoom.to({ element: event.target });
+            }
+//            console.log("checkZoomIn "+checkZoomIn);
+        } else{
+
+            checkZoomIn = 0;
+            checkZoomOut++
+            if(checkZoomOut == 5){
+                zoom.to({ element: event.target });
+            }
+//            console.log("checkZoomOut "+checkZoomOut);
+        }
+        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
+    });
 
 
     </script>
