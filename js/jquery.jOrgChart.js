@@ -14,6 +14,8 @@
  * Dual licensed under the MIT and GPL licenses.
  *
  */
+
+var canSort = false;
 (function($) {
 var cx = 0;
 var check = -1;
@@ -50,7 +52,6 @@ var check = -1;
                     //$(this).addClass("firow");
                     check++;
                     check = check % 6;
-                    console.log(check);
                     if(check == 0){
                         $(this).addClass("firow");
                     }else if(check == 1){
@@ -161,7 +162,6 @@ var check = -1;
                         $(this).addClass("norow");
                     }
 				}
-                console.log(check);
 			});
 			$this.find("li.root").each(function(){
 				buildNode($(this), $container, 0, opts);
@@ -206,7 +206,10 @@ var check = -1;
 
             // Drag start event handler for nodes
 
+
+            var dragSrcEl = null;
             $divNode.bind("dragstart", function handleDragStart( event, ui ){
+                dragSrcEl = this;
 				var start_event = ui.helper
 				var sourceNode = $(this);
 				if(start_event.is("div")){
@@ -245,36 +248,44 @@ var check = -1;
             // Drop event handler for nodes
 			var removeside_node = ""
             $divNode.bind("drop", function handleDropEvent( event, ui ) {
+                if(canSort == false){
+                    var targetID = $(this).data("tree-node");
+                    var targetLi = $this.find("li").filter(function() { return $(this).data("tree-node") === targetID; } );
+                    var targetUl = targetLi.children('ul');
 
-                var targetID = $(this).data("tree-node");
-                var targetLi = $this.find("li").filter(function() { return $(this).data("tree-node") === targetID; } );
-                var targetUl = targetLi.children('ul');
+                    var sourceID = ui.draggable.data("tree-node");
+                    if(sourceID == null){
+                        var lilength = $this.find("li").length;
+                        var sourceLi =  ui.draggable.clone().addClass('unic'+(lilength+1));
+                        removeside_node = ui.draggable.attr("id");
+                        sourceLi.addClass("item");
 
-                var sourceID = ui.draggable.data("tree-node");
-				if(sourceID == null){
-				   var lilength = $this.find("li").length;
-				   var sourceLi =  ui.draggable.clone().addClass('unic'+(lilength+1));
-				   removeside_node = ui.draggable.attr("id");
-				   sourceLi.addClass("item");
+                    }
+                    else{
+                        var sourceLi = $this.find("li").filter(function() { return $(this).data("tree-node") === sourceID; } );
+                        var sourceUl = sourceLi.parent('ul');
+                        //Removes any empty lists
+                        if (sourceUl.children().length === 0){
+                            sourceUl.remove();
+                        }
 
-				}
-				else{
-                  var sourceLi = $this.find("li").filter(function() { return $(this).data("tree-node") === sourceID; } );
-                  var sourceUl = sourceLi.parent('ul');
-				   //Removes any empty lists
-				   if (sourceUl.children().length === 0){
-                    sourceUl.remove();
-                   }
-				}
+                        //dragSrcEl.innerHTML = this.innerHTML;
+                        //console.log(dragSrcEl);
+                    }
 
-			    sourceLi.removeClass("node").removeClass("ui-draggable")
+                    sourceLi.removeClass("node").removeClass("ui-draggable")
 
-                if (targetUl.length > 0){
-                    targetUl.append(sourceLi);
-                } else {
-                    targetLi.append("<ul></ul>");
-                    targetLi.children('ul').append(sourceLi);
+                    if (targetUl.length > 0){
+                        targetUl.append(sourceLi);
+                    } else {
+                        targetLi.append("<ul></ul>");
+                        targetLi.children('ul').append(sourceLi);
+                    }
+                }else{
+                    alert("Sort Active");
                 }
+
+
 
             }); // handleDropEvent
 
@@ -464,3 +475,7 @@ var check = -1;
     }
 
 })(jQuery);
+
+function checkSort (status){
+    canSort = status;
+}
