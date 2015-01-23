@@ -300,14 +300,18 @@ var check = -1;
                         }
                     });
 
-                    if(indexOne > indextwo){
-                        $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith("<li/>");
-                        $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith(sourceStartLi);
-                        $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith(sourceEndLi);
+                    if(indexOne == null || indextwo == null){
+                        //
                     }else{
-                        $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith("<li/>");
-                        $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith(sourceEndLi);
-                        $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith(sourceStartLi);
+                        if(indexOne > indextwo){
+                            $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith("<li/>");
+                            $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith(sourceStartLi);
+                            $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith(sourceEndLi);
+                        }else{
+                            $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith("<li/>");
+                            $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith(sourceEndLi);
+                            $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith(sourceStartLi);
+                        }
                     }
                 }
             }); // handleDropEvent
