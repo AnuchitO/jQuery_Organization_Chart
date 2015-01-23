@@ -19,7 +19,6 @@ var canSort = false;
 (function($) {
 var cx = 0;
 var check = -1;
-var check = -1;
 
     $.fn.jOrgChart = function(options) {
 
@@ -239,7 +238,7 @@ var check = -1;
 				}
 
 				/* reload the plugin */
-				$(opts.chartElement).children().remove();
+                $(opts.chartElement).children().remove();
                 $this.jOrgChart(opts);
 
 			});
@@ -268,11 +267,7 @@ var check = -1;
                         if (sourceUl.children().length === 0){
                             sourceUl.remove();
                         }
-
-                        //dragSrcEl.innerHTML = this.innerHTML;
-                        //console.log(dragSrcEl);
                     }
-
                     sourceLi.removeClass("node").removeClass("ui-draggable")
 
                     if (targetUl.length > 0){
@@ -282,11 +277,39 @@ var check = -1;
                         targetLi.children('ul').append(sourceLi);
                     }
                 }else{
-                    alert("Sort Active");
+
+                    var sourceStartID = ui.draggable.data("tree-node");
+                    var sourceStartLi = $this.find("li").filter(function() { return $(this).data("tree-node") === sourceStartID; } );
+                    var sourceStartUl = sourceStartLi.parent('ul');
+
+
+                    var sourceEndID = $(this).data("tree-node");
+                    var sourceEndLi = $this.find("li").filter(function() { return $(this).data("tree-node") === sourceEndID; } );
+                    var sourceEndUl = sourceEndLi.children('ul');
+
+                    sourceStartLi.removeClass("node").removeClass("ui-draggable");
+                    var loopsort = sourceStartUl.children("li");
+                    var indexOne = null;
+                    var indextwo = null;
+                    loopsort.each(function(index,object){
+                        if(sourceEndLi.attr('id') == $(this).attr("id")){
+                            indexOne = index;
+                        }
+                        if(sourceStartLi.attr('id') == $(this).attr("id")){
+                            indextwo = index;
+                        }
+                    });
+
+                    if(indexOne > indextwo){
+                        $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith("<li/>");
+                        $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith(sourceStartLi);
+                        $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith(sourceEndLi);
+                    }else{
+                        $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith("<li/>");
+                        $(sourceStartUl).children('li:eq('+indextwo+')').replaceWith(sourceEndLi);
+                        $(sourceStartUl).children('li:eq('+indexOne+')').replaceWith(sourceStartLi);
+                    }
                 }
-
-
-
             }); // handleDropEvent
 
         } // Drag and drop
