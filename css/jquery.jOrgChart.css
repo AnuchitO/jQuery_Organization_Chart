@@ -4,6 +4,11 @@
   height                : 20px;
   width                 : 2px;
 }
+.jOrgChart .line2 {
+  height                : 10px;
+  width                 : 2px;
+}
+
 
 .jOrgChart .down {
   background-color 		: black;	
@@ -15,11 +20,18 @@
 }
 
 .jOrgChart .left {
-  border-right          : 1px solid black;
+  width: 0;
+  height: 0;
+  position: relative;
+  border-right: 5px solid #000000;
+  border-bottom: 10px solid transparent;
+  /*border-right           : 1px solid black;*/
 }
 
 .jOrgChart .right {
-  border-left           : 1px solid black;
+  border-left: 5px solid #000000;
+  border-bottom: 10px solid transparent;
+  /*border-left           : 1px solid black;*/
 }
 
 /* node cell */
@@ -49,4 +61,11 @@
 .drop-hover {
   border-style			: solid !important;
   border-color 			: #E05E00 !important;
+}
+
+.arrow-s {
+  border-top-width: 1em;
+  border-top-style: solid;
+  border-top-color: #666;
+  top: 0.25em;
 }

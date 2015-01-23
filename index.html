@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Softplus Organization Chart</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
     <link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
     <link href="css/prettify.css" type="text/css" rel="stylesheet" />
@@ -21,15 +21,20 @@
     <script src="fancybox/jquery.fancybox.js"></script>
     <script src="js/jquery.jOrgChart.js"></script>
 	<script src="js/taffy.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
 <style type="text/css">
+    body{
+        background-color: SandyBrown;
+    }
 
 #getjson {
-width : 100px;
-height : 50px;
+width : 110px;
+height : 40px;
 border-radius : 3px;
 margin-left: 20px;
-margin-top: 20px;
+margin-top: 10px;
 }
 /*
 #chart{
@@ -536,12 +541,12 @@ ul#upload-chart li {
     </script>
   </head>
 
-  <body onload="prettyPrint();" style="background:#e05e00;">
+  <body onload="prettyPrint();">
 
     <div class="topbar">
         <div class="topbar-inner ">
             <div class="container">
-                <a class="brand" href="#">Softplus Organization Chart</a>
+                <a class="brand">Softplus Organization Chart</a>
                 <ul class="nav ">
                     
                 </ul>
@@ -552,7 +557,7 @@ ul#upload-chart li {
             </div>
         </div>
     </div>
-    	<button id="getjson" onclick="makeArrays()">Generate json</button>
+    	<button id="getjson" onclick="makeArrays()" style="margin-top: 50px"><h5>Generate json</h5></button>
     <label style="position: absolute; left: 100px; top: 70px;">Sort</label>
     <label class="switch" >
         <input type="checkbox" class="switch-input">
@@ -565,10 +570,7 @@ ul#upload-chart li {
     <ul id="upload-chart">
 		<!--li id="Albert" class="node child"><span class="label_node"><a href="#">Albert</a><br><i>Data Architect</i> </span><div class="details"><p><strong>rank:</strong>Vice President</p><p><strong>department:</strong>Research and Development</p></div></li-->
 	</ul>
-    <div id="chartZoom">
         <div id="chart" class="orgChart" align="center"></div>
-    </div>
-
 
     <!--<div id="test" class="hidden">-->
         <!--<form action="." method="post" id="add_node_car_form">-->
@@ -645,6 +647,8 @@ ul#upload-chart li {
     <div id="fancy_join" class="hidden">
         <form action="." method="post" id="join_node_form">
             <h1 class="title_lb">Join node</h1>
+            <br>
+            <br>
             <div class="span12" id="join_nodo">
                 <label for="select_node">
                     <span class="title_lb">Select to join : </span>
