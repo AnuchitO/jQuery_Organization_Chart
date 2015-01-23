@@ -7,6 +7,7 @@
     <link href="css/prettify.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="fancybox/jquery.fancybox.css" type="text/css" />
     <script type="text/javascript" src="js/prettify.js"></script>
+    <link rel="stylesheet" href="css/switch.css"/>
     
     <!-- jQuery includes -->
     <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
@@ -71,7 +72,7 @@ ul#upload-chart li {
 }
 
 .crop{  
-        overflow: hidden; 
+        overflow: hidden;
         position: absolute;
         top: 4px;
         left: -70px;
@@ -552,6 +553,12 @@ ul#upload-chart li {
         </div>
     </div>
     	<button id="getjson" onclick="makeArrays()">Generate json</button>
+    <label style="position: absolute; left: 100px; top: 70px;">Sort</label>
+    <label class="switch" >
+        <input type="checkbox" class="switch-input">
+        <span class="switch-label" data-on="On" data-off="Off"></span>
+        <span class="switch-handle"></span>
+    </label>
     <div id="in" style="display:none">
       
    </div>            
@@ -723,7 +730,7 @@ ul#upload-chart li {
                         $(".topbar").fadeTo('fast',0.9);
                     }else{
                         $('#show-list').text('Show underlying list.');
-                        $(".topbar").fadeTo('fast',1);                  
+                        $(".topbar").fadeTo('fast',1);
                     }
                 });
             });
@@ -731,31 +738,37 @@ ul#upload-chart li {
 
 //    =========================================
 
-    var checkZoomIn = 0;
-    var checkZoomOut = 0;
-    var i = 0;
-    $('#chart').mousewheel(function(event) {
+//    var checkZoomIn = 0;
+//    var checkZoomOut = 0;
+//    var i = 0;
+//    $('#chart').mousewheel(function(event) {
+//
+//        if (event.deltaY == 1) {
+//
+//            checkZoomOut = 0;
+//            checkZoomIn++;
+//            if(checkZoomIn == 5){
+//                zoom.to({ element: event.target });
+//            }
+////            console.log("checkZoomIn "+checkZoomIn);
+//        } else{
+//
+//            checkZoomIn = 0;
+//            checkZoomOut++
+//            if(checkZoomOut == 5){
+//                zoom.to({ element: event.target });
+//            }
+////            console.log("checkZoomOut "+checkZoomOut);
+//        }
+//        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
+//    });
 
-        if (event.deltaY == 1) {
 
-            checkZoomOut = 0;
-            checkZoomIn++;
-            if(checkZoomIn == 5){
-                zoom.to({ element: event.target });
-            }
-//            console.log("checkZoomIn "+checkZoomIn);
-        } else{
 
-            checkZoomIn = 0;
-            checkZoomOut++
-            if(checkZoomOut == 5){
-                zoom.to({ element: event.target });
-            }
-//            console.log("checkZoomOut "+checkZoomOut);
-        }
-        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
+    $(".switch-input").live("click", function(e){
+        var checkbox = document.querySelector('input[type="checkbox"]');
+        checkSort(checkbox.checked);
     });
-
 
     </script>
 
