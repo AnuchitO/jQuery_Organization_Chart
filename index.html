@@ -215,7 +215,7 @@ ul#upload-chart li {
 			   },
 			   {
 				  "id":11,
-				  "name":"New SD",
+				  "name":"New SD1",
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"SD",
@@ -224,7 +224,7 @@ ul#upload-chart li {
 			   },
 			   {
 				  "id":12,
-				  "name":"New SD",
+				  "name":"New SD2",
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"SD",
@@ -233,7 +233,7 @@ ul#upload-chart li {
 			   },
 			   {
 				  "id":13,
-				  "name":"New SD",
+				  "name":"New SD3",
                   "rank":"Softwaloadjsonre Developer",
                   "department":"Development department",
 				  "level":"SD",
@@ -242,7 +242,7 @@ ul#upload-chart li {
 			   },
 			   {
 				  "id":14,
-				  "name":"New SD",
+				  "name":"New SD4",
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"SD",
@@ -251,7 +251,7 @@ ul#upload-chart li {
 			   },
 			   {
 				  "id":15,
-				  "name":"New SD",
+				  "name":"New SD5",
                   "rank":"SD",
                   "department":"Development department",
 				  "level":"SD",
@@ -481,22 +481,25 @@ ul#upload-chart li {
             $(".join_people").live("click",function(e){
                 var getAll = $(this);
                 var getName = getAll.parent().parent().children('span').children('div').children('a').text();
-                var idAll = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.node');
-                var valueAll = $(this).parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().parent().find('.label_name');
-
+                var idAll = $('#tbodyNode').find('.node');
+                var valueAll = $('#tbodyNode').find('.label_name');
                 var arrayId = [];
+
                 idAll.each(function(e){
                     var elemId = $(this).attr('class');
                     var thenum = elemId.replace(/[^0-9]/g,'');
                     arrayId.push(thenum);
                 });
-
                 valueAll.each(function(index){
+
                     var joinName = $(this).text();
                     if(joinName != getName){
                         $("#joinSelect").clone().attr('id',arrayId[index]).text(joinName).appendTo('#select_join');
                     }
+
                 });
+
+
             }).fancybox({
                         maxWidth	: 800,
                         maxHeight	: 800,
@@ -506,11 +509,14 @@ ul#upload-chart li {
                         autoSize	: false,
                         closeClick	: false,
                         openEffect	: 'none',
-                        closeEffect	: 'none'
+                        closeEffect	: 'none',
+                        afterClose:function() {
+                            $("#select_join").empty();
+                        }
             });
 
             $("#join_node").click(function(e){
-                $("#joinSelect").remove();
+                $("#select_join").empty();
                 $.fancybox.close();
                 init_tree();
                 scroller();

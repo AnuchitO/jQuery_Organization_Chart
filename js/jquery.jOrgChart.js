@@ -344,7 +344,7 @@ var check = -1;
     // Method that recursively builds the tree
     function buildNode($node, $appendTo, level, opts) {
         var $table = $("<table cellpadding='0' cellspacing='0' border='0'/>");
-        var $tbody = $("<tbody/>");
+        var $tbody = $("<tbody id='tbodyNode'/>");
 
         // Construct the node container(s)
         var $nodeRow = $("<tr/>").addClass("node-cells");
@@ -433,7 +433,7 @@ var check = -1;
                 // Draw the horizontal lines
                 var $linesRow = $("<tr/>");
                 $childNodes.each(function() {
-                    var $left = $("<td>&nbsp;</td>").addClass("line2 left top");
+                    var $left = $("<td>&nbsp;</td>").addClass("line left top");
                     var $right = $("<td>&nbsp;</td>").addClass("line right top");
                     $linesRow.append($left).append($right);
                 });
