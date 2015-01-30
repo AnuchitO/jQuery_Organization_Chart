@@ -748,30 +748,30 @@ ul#upload-chart li {
 
 //    =========================================
 
-//    var checkZoomIn = 0;
-//    var checkZoomOut = 0;
-//    var i = 0;
-//    $('#chart').mousewheel(function(event) {
-//
-//        if (event.deltaY == 1) {
-//
-//            checkZoomOut = 0;
-//            checkZoomIn++;
-//            if(checkZoomIn == 5){
-//                zoom.to({ element: event.target });
-//            }
-////            console.log("checkZoomIn "+checkZoomIn);
-//        } else{
-//
-//            checkZoomIn = 0;
-//            checkZoomOut++
-//            if(checkZoomOut == 5){
-//                zoom.to({ element: event.target });
-//            }
-////            console.log("checkZoomOut "+checkZoomOut);
-//        }
-//        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
-//    });
+    var checkZoomIn = 0;
+    var checkZoomOut = 0;
+    var i = 0;
+    $('#chart').mousewheel(function(event) {
+
+        if (event.deltaY == 1) {
+
+            checkZoomOut = 0;
+            checkZoomIn++;
+            if(checkZoomIn == 5){
+                zoom.to({ element: event.target });
+            }
+//            console.log("checkZoomIn "+checkZoomIn);
+        } else{
+
+            checkZoomIn = 0;
+            checkZoomOut++
+            if(checkZoomOut == 5){
+                zoom.to({ element: event.target });
+            }
+//            console.log("checkZoomOut "+checkZoomOut);
+        }
+        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
+    });
 
 
 
