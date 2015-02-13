@@ -132,6 +132,15 @@ ul#upload-chart li {
                   "image":"images/f-1.jpg",
 				  "parent":""
 			   },
+                {
+                    "id":16,
+                    "name":"Panupong C.",
+                    "rank":"SDM",
+                    "department":"Administration department",
+                    "level":"CEO",
+                    "image":"images/f-1.jpg",
+                    "parent":"naja"
+                },
 			   {
 				  "id":2,
 				  "name":"Suriya e.",
@@ -284,7 +293,7 @@ ul#upload-chart li {
                     items.push("</li>");
                 }
             }// End the generate html code
-			
+
 			//push to html code
 			$( "<ul/>", {
 			"id": "org",
@@ -522,6 +531,46 @@ ul#upload-chart li {
                 scroller();
             });
 
+            $("#add_node_car").click(function(e){
+                e.preventDefault();
+
+                //unidad de consumo agregada, agregar li a la lista, y refrescar arbol
+                var newAdd = [];
+                var tipo_nodo = "";
+                var text_car_name = $("#new_node_car_name").val();
+                var text_car_position = "C"
+                var text_car_rank = "Car Driver"
+                var text_car_department = "Car Driver department"
+
+                $("#new_node_car_name").val("");
+                $("#text_car_position").val("");
+                $("#text_car_rank").val("");
+                $("#text_car_department").val("");
+
+                var $node = $("li."+add_car_to_node+":not('.temp')");
+                var childs = $("#org li").size();
+                childs += (childs+4);
+                childs++;
+                var unicClass = add_car_to_node.replace(add_car_to_node.replace ( /[^\d.]/g, '' ),'');
+                unicClass+=childs;
+                tipo_nodo += "child "+unicClass+"'id='"+childs;
+                var append_text = "<li class='"+ tipo_nodo +"'>";
+                append_text += "<span><div class='label_name'><a href='#'>" + text_car_name + "</a></div><br><i class='label_level'>"+text_car_position+
+                "</i></span></i></span><div class='details' style='text-align: left;width: 150px;'><p><strong>rank:</strong>" + text_car_rank+
+                "</p><p><strong>department:</strong>" +text_car_department+"</p></div><div class='crop'><img src='images/f-3.jpg' alt=''/></div>";
+                append_text += "</li>";
+                var appendOld = $node.find("ul")[0];
+                $node.find("ul")[0].remove();
+
+                append_text = "<ul>" + append_text + "</ul>";
+                $node.append(append_text);
+                $node.find("li").append(appendOld);
+
+                $.fancybox.close();
+                init_tree();
+                scroller();
+            });
+
 
             //forms behavior
 //            $("#new_node_name, #edit_node_name").on("keyup", function(evt){
@@ -578,19 +627,19 @@ ul#upload-chart li {
 	</ul>
         <div id="chart" class="orgChart" align="center"></div>
 
-    <!--<div id="test" class="hidden">-->
-        <!--<form action="." method="post" id="add_node_car_form">-->
-            <!--<h1 class="title_lb">New Node</h1>-->
-            <!--<div class="span12" id="add_nodo_car">-->
-                <!--<label for="car_driver_name" ><span class="title_lb" >Name : </span> </label>-->
-                <!--<input type="text" name="customer_name" id="new_node_car_name" class="span9"/>-->
-                <!--<br/> <br/>-->
-                <!--<div class="span12">-->
-                <!--<button id="add_node_car" class="btn btn-primary aqua_btn span3">Add</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</form>-->
-    <!--</div>-->
+    <div id="fancy_car" class="hidden">
+        <form action="." method="post" id="add_node_car_form">
+            <h1 class="title_lb">New Car Driver</h1>
+            <div class="span12" id="add_nodo_car">
+                <label for="car_driver_name" ><span class="title_lb" >Name : </span> </label>
+                <input type="text" name="customer_name" id="new_node_car_name" class="span9"/>
+                <br/> <br/>
+                <div class="span12">
+                <button id="add_node_car" class="btn btn-primary aqua_btn span3">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <div id="fancy" class="hidden">
         <form action="." method="post" id="add_node_form">
@@ -748,30 +797,30 @@ ul#upload-chart li {
 
 //    =========================================
 
-    var checkZoomIn = 0;
-    var checkZoomOut = 0;
-    var i = 0;
-    $('#chart').mousewheel(function(event) {
-
-        if (event.deltaY == 1) {
-
-            checkZoomOut = 0;
-            checkZoomIn++;
-            if(checkZoomIn == 5){
-                zoom.to({ element: event.target });
-            }
-//            console.log("checkZoomIn "+checkZoomIn);
-        } else{
-
-            checkZoomIn = 0;
-            checkZoomOut++
-            if(checkZoomOut == 5){
-                zoom.to({ element: event.target });
-            }
-//            console.log("checkZoomOut "+checkZoomOut);
-        }
-        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
-    });
+//    var checkZoomIn = 0;
+//    var checkZoomOut = 0;
+//    var i = 0;
+//    $('#chart').mousewheel(function(event) {
+//
+//        if (event.deltaY == 1) {
+//
+//            checkZoomOut = 0;
+//            checkZoomIn++;
+//            if(checkZoomIn == 5){
+//                zoom.to({ element: event.target });
+//            }
+////            console.log("checkZoomIn "+checkZoomIn);
+//        } else{
+//
+//            checkZoomIn = 0;
+//            checkZoomOut++
+//            if(checkZoomOut == 5){
+//                zoom.to({ element: event.target });
+//            }
+////            console.log("checkZoomOut "+checkZoomOut);
+//        }
+//        //        console.log(event.deltaX,event.deltaY,event.deltaFactor);
+//    });
 
 
 

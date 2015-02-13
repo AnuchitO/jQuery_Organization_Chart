@@ -20,6 +20,8 @@ var canSort = false;
 var cx = 0;
 var check = -1;
 
+    var xx = false;
+
     $.fn.jOrgChart = function(options) {
 
         var opts = $.extend({}, $.fn.jOrgChart.defaults, options);
@@ -39,128 +41,247 @@ var check = -1;
                         re = item;
                     }
                 });
+                var x = $(this).find('p')[0].innerHTML.split("</strong>")[1];
                 check = check % 6;
-				if(re != null){
-					$(this).removeClass(re)
-				}
-				var col = $(this).parents('li').length;
-				if (col == 0){
-					$(this).addClass("nrow");
-				}
-				else if (col == 1){
-                    //$(this).addClass("firow");
-                    check++;
-                    check = check % 6;
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                if(re != null){
+                    $(this).removeClass(re)
+                }
+                var col = $(this).parents('li').length;
+
+                if(x == "Car Driver"){
+                    xx = true;
+                }
+
+
+                if(xx == true){
+                    if (col == 0){
+                        $(this).addClass("nrow");
                     }
-				}
-				else if (col == 2){
-					//$(this).addClass("serow");
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                    else if (col == 1){
+                        //$(this).addClass("firow");
+                        $(this).addClass("nrow");
                     }
-				}
-				else if (col == 3){
-					//$(this).addClass("throw");
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                    else if (col == 2){
+                        check++;
+                        check = check % 6;
+                        //$(this).addClass("serow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
                     }
-				}
-				else if (col == 4){
-					//$(this).addClass("forow");
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                    else if (col == 3){
+                        //$(this).addClass("throw");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
                     }
-				}
-				else if (col == 5){
-					//$(this).addClass("firow");
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                    else if (col == 4){
+                        //$(this).addClass("forow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
                     }
-				}
-				else if (col == 6){
-					//$(this).addClass("sirow");
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                    else if (col == 5){
+                        //$(this).addClass("firow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
                     }
-				}
-				else {
-					//$(this).addClass("norow");
-                    if(check == 0){
-                        $(this).addClass("firow");
-                    }else if(check == 1){
-                        $(this).addClass("serow");
-                    }else if(check == 2){
-                        $(this).addClass("throw");
-                    }else if(check == 3){
-                        $(this).addClass("forow");
-                    }else if(check == 4){
-                        $(this).addClass("sirow");
-                    }else if(check == 5){
-                        $(this).addClass("norow");
+                    else if (col == 6){
+                        //$(this).addClass("sirow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
                     }
-				}
+                    else {
+                        //$(this).addClass("norow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                }else{
+                    if (col == 0){
+                        $(this).addClass("nrow");
+                    }
+                    else if (col == 1){
+                        //$(this).addClass("firow");
+                        check++;
+                        check = check % 6;
+                        if(check == 0) {
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                    else if (col == 2){
+                        //$(this).addClass("serow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                    else if (col == 3){
+                        //$(this).addClass("throw");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                    else if (col == 4){
+                        //$(this).addClass("forow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                    else if (col == 5){
+                        //$(this).addClass("firow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                    else if (col == 6){
+                        //$(this).addClass("sirow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                    else {
+                        //$(this).addClass("norow");
+                        if(check == 0){
+                            $(this).addClass("firow");
+                        }else if(check == 1){
+                            $(this).addClass("serow");
+                        }else if(check == 2){
+                            $(this).addClass("throw");
+                        }else if(check == 3){
+                            $(this).addClass("forow");
+                        }else if(check == 4){
+                            $(this).addClass("sirow");
+                        }else if(check == 5){
+                            $(this).addClass("norow");
+                        }
+                    }
+                }
+
+
+
+
 			});
 			$this.find("li.root").each(function(){
 				buildNode($(this), $container, 0, opts);
@@ -410,6 +531,8 @@ var check = -1;
 			});
 		}
 
+        //console.log($this);
+
 
         $nodeCell.append($nodeDiv);
         $nodeRow.append($nodeCell);
@@ -477,13 +600,19 @@ var check = -1;
         }
         if(!$nodeDiv.hasClass("temp")){
 
+            console.log($nodeDiv.find("p")[0].innerHTML.split("</strong>")[1]);
+
             if($nodeDiv.hasClass("child")){
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='join_people' href='#fancy_join'></span>");
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
+                if($nodeDiv.find("p")[0].innerHTML.split("</strong>")[1] == "Car Driver"){
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
+                }else{
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='join_people' href='#fancy_join'></span>");
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
+                }
             }else{
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='car' href='#test'></span>");
+                $nodeDiv.find(".opciones:eq(0)").append("<span class='car' href='#fancy_car'></span>");
                 $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
                 $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
             }
