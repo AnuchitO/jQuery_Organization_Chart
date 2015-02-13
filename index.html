@@ -316,25 +316,6 @@ ul#upload-chart li {
 
             //-- Listo editar :D
             $(".del").live("click", function(e){
-//                console.log($("ul#org").find("div.details").children("p"));
-//                var nodo=$(this);
-//                var inclick = nodo.parent().parent().attr('class').split(" ")[2].split("unic")[1];
-////                console.log(nodo);
-//                console.log(inclick);
-////                console.log($("li#"+inclick).find("div.details").children("p")[0].innerHTML.split("</strong>")[1]);
-//
-//                var checkCarDriver = $("li#"+inclick).find("div.details").children("p")[0].innerHTML.split("</strong>")[1];
-//                var oldUl = $("li#"+inclick).children("ul");
-////                console.log(oldUl);
-//
-//                console.log( );
-//
-//                var $nodetest = $("ul#org").children("li").children("ul");
-//                $nodetest.replaceWith(oldUl);
-//
-//
-//                var testLoop = $("ul#org").find("div.details").children("p");
-
                 if (confirm('Are you sure?'))
                 {
                     var nodo=$(this);
@@ -342,9 +323,6 @@ ul#upload-chart li {
                     var checkCarDriver = $("li#"+inclick).find("div.details").children("p")[0].innerHTML.split("</strong>")[1];
                     var oldUl = $("li#"+inclick).children("ul");
                     var $nodetest = $("ul#org").children("li").children("ul");
-//                    console.log(nodo);
-//                    console.log(inclick);
-
                     if(checkCarDriver == "Car Driver"){
                         $nodetest.replaceWith(oldUl);
                         var send = false;

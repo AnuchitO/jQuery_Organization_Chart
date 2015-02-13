@@ -525,9 +525,6 @@ var check = -1;
 			});
 		}
 
-        //console.log($this);
-
-
         $nodeCell.append($nodeDiv);
         $nodeRow.append($nodeCell);
         $tbody.append($nodeRow);
@@ -594,7 +591,6 @@ var check = -1;
         }
         if(!$nodeDiv.hasClass("temp")){
             if($nodeDiv.hasClass("child")){
-                console.log(drawbuttonCar);
                 if($nodeDiv.find("p")[0].innerHTML.split("</strong>")[1] == "Car Driver"){
                     $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
                 }else{
