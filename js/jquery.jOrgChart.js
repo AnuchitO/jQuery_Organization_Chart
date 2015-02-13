@@ -14,15 +14,14 @@
  * Dual licensed under the MIT and GPL licenses.
  *
  */
-
+var drawbuttonCar = false;
 var canSort = false;
+
 (function($) {
 var cx = 0;
 var check = -1;
-
-    var xx = false;
-
     $.fn.jOrgChart = function(options) {
+        var checkCar = false;
 
         var opts = $.extend({}, $.fn.jOrgChart.defaults, options);
         var $appendTo = $(opts.chartElement);
@@ -41,19 +40,14 @@ var check = -1;
                         re = item;
                     }
                 });
-                var x = $(this).find('p')[0].innerHTML.split("</strong>")[1];
+                var statusCar = $(this).find('p')[0].innerHTML.split("</strong>")[1];
                 check = check % 6;
                 if(re != null){
                     $(this).removeClass(re)
                 }
                 var col = $(this).parents('li').length;
 
-                if(x == "Car Driver"){
-                    xx = true;
-                }
-
-
-                if(xx == true){
+                if(drawbuttonCar == true){
                     if (col == 0){
                         $(this).addClass("nrow");
                     }
@@ -599,10 +593,8 @@ var check = -1;
             });
         }
         if(!$nodeDiv.hasClass("temp")){
-
-            console.log($nodeDiv.find("p")[0].innerHTML.split("</strong>")[1]);
-
             if($nodeDiv.hasClass("child")){
+                console.log(drawbuttonCar);
                 if($nodeDiv.find("p")[0].innerHTML.split("</strong>")[1] == "Car Driver"){
                     $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
                 }else{
@@ -612,9 +604,14 @@ var check = -1;
                     $nodeDiv.find(".opciones:eq(0)").append("<span class='del'></span>");
                 }
             }else{
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='car' href='#fancy_car'></span>");
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
-                $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
+                if(drawbuttonCar == false){
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='car' href='#fancy_car'></span>");
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
+                }else{
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='edit' href='#fancy_edit'></span>");
+                    $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span>");
+                }
             }
         }else{
             $nodeDiv.find(".opciones:eq(0)").append("<span class='add' href='#fancy'></span><span class='del'></span>");
@@ -634,4 +631,8 @@ var check = -1;
 
 function checkSort (status){
     canSort = status;
+}
+
+function checkStatusCar(status){
+    drawbuttonCar = status;
 }
