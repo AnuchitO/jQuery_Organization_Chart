@@ -319,19 +319,32 @@ ul#upload-chart li {
                 if (confirm('Are you sure?'))
                 {
                     var nodo=$(this);
-
-                    if(!nodo.parent().parent().hasClass("temp")){
-                        var nodeDiv = nodo.parent().parent();
-                        var cu = nodeDiv.find("a").attr("rel");
-                        classList = nodeDiv.attr('class').split(/\s+/);
-                        $.each(classList, function(index,item) {
-                            if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
-                                del_node = item;
-                            }
-                        });
-                        var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
-                        remChild(element);
+                    var inclick = nodo.parent().parent().attr('class').split(" ")[2].split("unic")[1];
+                    var checkCarDriver = $("li#"+inclick).find("div.details").children("p")[0].innerHTML.split("</strong>")[1];
+                    var oldUl = $("li#"+inclick).children("ul");
+                    var $nodetest = $("ul#org").children("li").children("ul");
+                    if(checkCarDriver == "Car Driver"){
+                        $nodetest.replaceWith(oldUl);
+                        var send = false;
+                        checkStatusCar(send);
                         init_tree();
+                    }else{
+                        // Remove Box
+                        $("li#"+inclick).remove();
+
+                        if(!nodo.parent().parent().hasClass("temp")){
+                            var nodeDiv = nodo.parent().parent();
+                            var cu = nodeDiv.find("a").attr("rel");
+                            classList = nodeDiv.attr('class').split(/\s+/);
+                            $.each(classList, function(index,item) {
+                                if(item != "temp" && item != "node" && item != "child" && item != "ui-draggable" && item != "ui-droppable" && !regx.test(item) ){
+                                    del_node = item;
+                                }
+                            });
+                            var element = $("li."+del_node+":not('.temp, #upload-chart li')").removeAttr("class").addClass("node").addClass("child");
+                            remChild(element);
+                            init_tree();
+                        }
                     }
                 }
 
@@ -388,11 +401,6 @@ ul#upload-chart li {
                 $("#new_node_rank").val("");
                 $("#new_node_department").val("");
 
-//                console.log("customer : "+text_customer);
-//                console.log("position : "+text_position);
-//                console.log("rank : "+text_rank);
-//                console.log("department : "+text_department);
-
                 var $node = $("li."+add_to_node+":not('.temp')");
                 var childs = $("#org li").size();
                 childs += (childs+4);
@@ -422,7 +430,6 @@ ul#upload-chart li {
                 var getposition = getall.parent().parent().children('span').children('i').text();
                 var getrank = getall.parent().parent().children('div.details').children('p')[0].innerHTML.split("</strong>")[1];
                 var getdepartment = getall.parent().parent().children('div.details').children('p')[1].innerHTML.split("</strong>")[1];
-//                console.log(getall.parent().parent().children('div.details').children('p')[1].innerHTML.split("</strong>")[1]);
                 $('#edit_node_name').val(getname);
                 $('#edit_node_position').val(getposition);
                 $('#edit_node_rank').val(getrank);
@@ -565,6 +572,8 @@ ul#upload-chart li {
                 append_text = "<ul>" + append_text + "</ul>";
                 $node.append(append_text);
                 $node.find("li").append(appendOld);
+                var send = true;
+                checkStatusCar(send);
 
                 $.fancybox.close();
                 init_tree();
